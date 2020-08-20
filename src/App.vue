@@ -3,15 +3,17 @@
     <Head></Head>
     <Sidebar></Sidebar>
      <router-view/>
+    <!-- <Map></Map> -->
   </div>
 </template>
 
 <script>
 import Head from "@/components/Head.vue";
 import Sidebar from "@/components/Sidebar.vue";
+import Map from "@/components/map.vue"
 export default {
    components: {
-    Head,Sidebar
+    Head,Sidebar,Map
   }
 }
 </script>

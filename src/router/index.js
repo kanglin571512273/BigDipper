@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
-import map from '@/components/map'
+import map from '@/components/map.vue'
 
 Vue.use(Router)
 

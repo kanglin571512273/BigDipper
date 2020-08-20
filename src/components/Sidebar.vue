@@ -25,7 +25,37 @@
         </div>
         <div class="digital lndependent">网点35个，自助银行16个。</div>
         <div class="radioGroups">
-          <a-radio-group name="radioGroup" :default-value="1">
+          <a-checkbox-group @change="onChange">
+            <div class="radioGroup-lint">
+                <a-checkbox :value="1">
+                  营业中心
+                  <span class="digital">9</span>
+                </a-checkbox>
+                <a-checkbox :value="2">
+                  商圈型
+                  <span class="digital">7</span>
+                </a-checkbox>
+                <a-checkbox :value="3">
+                  社区型
+                  <span class="digital">9</span>
+                </a-checkbox>
+            </div>
+            <div class="radioGroup-lint">
+              <a-checkbox :value="4">
+                乡政型
+                <span class="digital">2</span>
+              </a-checkbox>
+              <a-checkbox :value="5">
+                市场型
+                <span class="digital">5</span>
+              </a-checkbox>
+              <a-checkbox :value="6">
+                园区型
+                <span class="digital">6</span>
+              </a-checkbox>
+            </div>
+          </a-checkbox-group>
+          <!-- <a-radio-group name="radioGroup" :default-value="1">
             <div class="radioGroup-lint">
               <a-radio :value="1">
                 营业中心
@@ -55,7 +85,7 @@
                 <span class="digital">6</span>
               </a-radio>
             </div>
-          </a-radio-group>
+          </a-radio-group> -->
         </div>
         <div class="classification">距离：</div>
         <a-radio-group name="radioGroup" :default-value="2">
@@ -909,16 +939,15 @@
         <a-tree-select
           style="width: 300px;margin-bottom:10px"
           :dropdown-style="{ maxHeight: '400px', overflow: 'auto',}"
-          :tree-data="options"
           placeholder="请选择商圈"
           allowClear
         >
-          <span
+          <!-- <span
             v-if="key === '0-0-1'"
             slot="title"
             slot-scope="{ key, value }"
             style="color: #08c"
-          >Child Node1 {{ value }}</span>
+          >Child Node1 {{ value }}</span> -->
         </a-tree-select>
         <a-input placeholder="请输入客户名称" style="width: 300px;" />
         <div class="classification">

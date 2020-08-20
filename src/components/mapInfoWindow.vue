@@ -1,12 +1,12 @@
 <template>
-  <div class="hello">
-    <div>123</div>
+  <div class="infoWrapper">
+    <div>湖滨支行</div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "HelloWorld",
+  name: "infoMapWindow",
   data() {
     return {
     };
