@@ -1,0 +1,79 @@
+{
+  "id": "2013733",
+  "name": "北斗",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "16621915",
+      "name": "删除",
+      "font_class": "shanchu",
+      "unicode": "e63b",
+      "unicode_decimal": 58939
+    },
+    {
+      "icon_id": "16621858",
+      "name": "总-空心红",
+      "font_class": "zong-kongxinhong",
+      "unicode": "e63a",
+      "unicode_decimal": 58938
+    },
+    {
+      "icon_id": "16621821",
+      "name": "已对接-紫色备份",
+      "font_class": "yiduijie-zisebeifen",
+      "unicode": "e637",
+      "unicode_decimal": 58935
+    },
+    {
+      "icon_id": "16621823",
+      "name": "以开户-黄",
+      "font_class": "yikaihu-huang",
+      "unicode": "e638",
+      "unicode_decimal": 58936
+    },
+    {
+      "icon_id": "16621824",
+      "name": "已对接-紫色",
+      "font_class": "yiduijie-zise",
+      "unicode": "e639",
+      "unicode_decimal": 58937
+    },
+    {
+      "icon_id": "16621803",
+      "name": "分享",
+      "font_class": "fenxiang",
+      "unicode": "e632",
+      "unicode_decimal": 58930
+    },
+    {
+      "icon_id": "16621804",
+      "name": "关机",
+      "font_class": "guanji",
+      "unicode": "e633",
+      "unicode_decimal": 58931
+    },
+    {
+      "icon_id": "16621805",
+      "name": "操作",
+      "font_class": "caozuo",
+      "unicode": "e634",
+      "unicode_decimal": 58932
+    },
+    {
+      "icon_id": "16621806",
+      "name": "链接",
+      "font_class": "lianjie",
+      "unicode": "e635",
+      "unicode_decimal": 58933
+    },
+    {
+      "icon_id": "16621808",
+      "name": "我的",
+      "font_class": "wode",
+      "unicode": "e636",
+      "unicode_decimal": 58934
+    }
+  ]
+}

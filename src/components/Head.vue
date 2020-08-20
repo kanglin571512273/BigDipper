@@ -7,16 +7,19 @@
       <ul class="list-box">
         <a href="#">
           <li>
+        <span class="iconfont iconcaozuo"></span>
             <span>操作指南</span>
           </li>
         </a>
         <a href="#">
           <li>
+        <span class="iconfont iconlianjie"></span>
             <span>常用链接</span>
           </li>
         </a>
         <a href="https://max.datahunter.cn/screen-share/share/5f339a0ea5adc80868f434cd">
           <li>
+        <span class="iconfont iconfenxiang"></span>
             <span>首页大屏</span>
           </li>
         </a>
@@ -40,6 +43,7 @@
         </a-modal>
         <a-dropdown>
           <a class="ant-dropdown-link" @click="e => e.preventDefault()">
+            <span class="iconfont iconwode"></span>
             张小明
             <a-icon type="down" />
           </a>
