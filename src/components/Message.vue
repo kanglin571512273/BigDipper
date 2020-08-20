@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div>佳乐，看不见！！！</div>
+        <div></div>
     </div>
 </template>
 <script>

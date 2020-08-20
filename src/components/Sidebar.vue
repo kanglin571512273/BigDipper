@@ -27,18 +27,18 @@
         <div class="radioGroups">
           <a-checkbox-group @change="onChange">
             <div class="radioGroup-lint">
-                <a-checkbox :value="1">
-                  营业中心
-                  <span class="digital">9</span>
-                </a-checkbox>
-                <a-checkbox :value="2">
-                  商圈型
-                  <span class="digital">7</span>
-                </a-checkbox>
-                <a-checkbox :value="3">
-                  社区型
-                  <span class="digital">9</span>
-                </a-checkbox>
+              <a-checkbox :value="1">
+                营业中心
+                <span class="digital">9</span>
+              </a-checkbox>
+              <a-checkbox :value="2">
+                商圈型
+                <span class="digital">7</span>
+              </a-checkbox>
+              <a-checkbox :value="3">
+                社区型
+                <span class="digital">9</span>
+              </a-checkbox>
             </div>
             <div class="radioGroup-lint">
               <a-checkbox :value="4">
@@ -70,7 +70,6 @@
                 <span class="digital">9</span>
               </a-radio>
             </div>
-
             <div class="radioGroup-lint">
               <a-radio :value="4">
                 乡政型
@@ -85,7 +84,7 @@
                 <span class="digital">6</span>
               </a-radio>
             </div>
-          </a-radio-group> -->
+          </a-radio-group>-->
         </div>
         <div class="classification">距离：</div>
         <a-radio-group name="radioGroup" :default-value="2">
@@ -286,28 +285,36 @@
         <div class="classification">名称：</div>
         <div class="agriculture-box">
           <div>
-            <span></span>
+            <span>
+              <img src="../assets/img/abc_mid.png" alt="icon" />
+            </span>
             <span>农业银行城东支行</span>
           </div>
           <div>251m</div>
         </div>
         <div class="agriculture-box">
           <div>
-            <span></span>
+            <span>
+              <img src="../assets/img/abc_mid.png" alt="icon" />
+            </span>
             <span>农业银行西湖支行</span>
           </div>
           <div>451m</div>
         </div>
         <div class="agriculture-box">
           <div>
-            <span></span>
+            <span>
+              <img src="../assets/img/abc_mid.png" alt="icon" />
+            </span>
             <span>农业银行拱墅支行</span>
           </div>
           <div>871m</div>
         </div>
         <div class="agriculture-box">
           <div>
-            <span></span>
+            <span>
+              <img src="../assets/img/cmb_mid.png" alt="icon" />
+            </span>
             <span>招商银行延安路支行</span>
           </div>
           <div>678m</div>
@@ -474,7 +481,9 @@
             <tr>
               <td></td>
               <td>
-                <span class="iconfont iconzong-kongxinhong"></span>&nbsp;&nbsp;
+                <svg class="icon" aria-hidden="true">
+                  <use xlink:href="#iconzong-kongxinhong" />
+                </svg>&nbsp;&nbsp;
                 <span>总客户数</span>
               </td>
               <td>422</td>
@@ -765,7 +774,7 @@
           </div>
           <div class="agriculture-box">
             <div>
-               <svg class="icon" aria-hidden="true">
+              <svg class="icon" aria-hidden="true">
                 <use xlink:href="#iconyiduijie-zise" />
               </svg>
               <span>杭州朗珮科技有限公司</span>
@@ -807,44 +816,44 @@
             <div class="agriculture-box">
               <div>
                 <svg class="icon" aria-hidden="true">
-                <use xlink:href="#iconyiduijie-zise" />
-              </svg>
+                  <use xlink:href="#iconyiduijie-zise" />
+                </svg>
                 <span>浙江锋千亚网络公司</span>
               </div>
               <div>100m</div>
             </div>
             <div class="agriculture-box">
               <div>
-                 <svg class="icon" aria-hidden="true">
-                <use xlink:href="#iconyikaihu-huang" />
-              </svg>
+                <svg class="icon" aria-hidden="true">
+                  <use xlink:href="#iconyikaihu-huang" />
+                </svg>
                 <span>浙江仕佳网络公司</span>
               </div>
               <div>200m</div>
             </div>
             <div class="agriculture-box">
               <div>
-                  <svg class="icon" aria-hidden="true">
-                <use xlink:href="#iconyiduijie-zise" />
-              </svg>
+                <svg class="icon" aria-hidden="true">
+                  <use xlink:href="#iconyiduijie-zise" />
+                </svg>
                 <span>浙江创峰科技有限公司</span>
               </div>
               <div>300m</div>
             </div>
             <div class="agriculture-box">
               <div>
-                 <svg class="icon" aria-hidden="true">
-                <use xlink:href="#iconyiduijie-zise" />
-              </svg>
+                <svg class="icon" aria-hidden="true">
+                  <use xlink:href="#iconyiduijie-zise" />
+                </svg>
                 <span>浙江迈磊凯家具公司</span>
               </div>
               <div>400m</div>
             </div>
             <div class="agriculture-box">
               <div>
-                 <svg class="icon" aria-hidden="true">
-                <use xlink:href="#iconyikaihu-huang" />
-              </svg>
+                <svg class="icon" aria-hidden="true">
+                  <use xlink:href="#iconyikaihu-huang" />
+                </svg>
                 <span>杭州朗珮科技有限公司</span>
               </div>
               <div>500m</div>
@@ -869,17 +878,17 @@
             <div class="agriculture-box">
               <div>
                 <svg class="icon" aria-hidden="true">
-                <use xlink:href="#iconyikaihu-huang" />
-              </svg>
+                  <use xlink:href="#iconyikaihu-huang" />
+                </svg>
                 <span>名称公寓</span>
               </div>
               <div>100m</div>
             </div>
             <div class="agriculture-box">
               <div>
-               <svg class="icon" aria-hidden="true">
-                <use xlink:href="#iconyikaihu-huang" />
-              </svg>
+                <svg class="icon" aria-hidden="true">
+                  <use xlink:href="#iconyikaihu-huang" />
+                </svg>
                 <span>延安路</span>
               </div>
               <div>200m</div>
@@ -887,8 +896,8 @@
             <div class="agriculture-box">
               <div>
                 <svg class="icon" aria-hidden="true">
-                <use xlink:href="#iconyiduijie-zise" />
-              </svg>
+                  <use xlink:href="#iconyiduijie-zise" />
+                </svg>
                 <span>平海公寓</span>
               </div>
               <div>300m</div>
@@ -896,8 +905,8 @@
             <div class="agriculture-box">
               <div>
                 <svg class="icon" aria-hidden="true">
-                <use xlink:href="#iconyiduijie-zise" />
-              </svg>
+                  <use xlink:href="#iconyiduijie-zise" />
+                </svg>
                 <span>中山山路</span>
               </div>
               <div>400m</div>
@@ -905,8 +914,8 @@
             <div class="agriculture-box">
               <div>
                 <svg class="icon" aria-hidden="true">
-                <use xlink:href="#iconyikaihu-huang" />
-              </svg>
+                  <use xlink:href="#iconyikaihu-huang" />
+                </svg>
                 <span>延安路</span>
               </div>
               <div>500m</div>
@@ -914,17 +923,17 @@
             <div class="agriculture-box">
               <div>
                 <svg class="icon" aria-hidden="true">
-                <use xlink:href="#iconyiduijie-zise" />
-              </svg>
+                  <use xlink:href="#iconyiduijie-zise" />
+                </svg>
                 <span>平海公寓</span>
               </div>
               <div>500m</div>
             </div>
             <div class="agriculture-box">
               <div>
-               <svg class="icon" aria-hidden="true">
-                <use xlink:href="#iconyikaihu-huang" />
-              </svg>
+                <svg class="icon" aria-hidden="true">
+                  <use xlink:href="#iconyikaihu-huang" />
+                </svg>
                 <span>未央村</span>
               </div>
               <div>500m</div>
@@ -1008,7 +1017,7 @@
             slot="title"
             slot-scope="{ key, value }"
             style="color: #08c"
-          >Child Node1 {{ value }}</span> -->
+          >Child Node1 {{ value }}</span>-->
         </a-tree-select>
         <a-input placeholder="请输入客户名称" style="width: 300px;" />
         <div class="classification">
@@ -1026,35 +1035,45 @@
         </div>
         <div class="agriculture-box">
           <div>
-            <span></span>
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#iconyikaihu-huang" />
+            </svg>
             <span>浙江锋千亚网络公司</span>
           </div>
           <div>100m</div>
         </div>
         <div class="agriculture-box">
           <div>
-            <span></span>
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#iconyiduijie-zise" />
+            </svg>
             <span>浙江仕佳网络公司</span>
           </div>
           <div>200m</div>
         </div>
         <div class="agriculture-box">
           <div>
-            <span></span>
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#iconyikaihu-huang" />
+            </svg>
             <span>浙江创峰科技有限公司</span>
           </div>
           <div>300m</div>
         </div>
         <div class="agriculture-box">
           <div>
-            <span></span>
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#iconyiduijie-zise" />
+            </svg>
             <span>浙江迈磊凯家具公司</span>
           </div>
           <div>400m</div>
         </div>
         <div class="agriculture-box">
           <div>
-            <span></span>
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#iconyikaihu-huang" />
+            </svg>
             <span>杭州朗珮科技有限公司</span>
           </div>
           <div>500m</div>
@@ -1183,7 +1202,6 @@ export default {
         default:
       }
     },
-
     onChange(checkedValues) {
       console.log("checked = ", checkedValues);
     },
