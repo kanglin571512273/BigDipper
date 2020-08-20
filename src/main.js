@@ -5,6 +5,9 @@ import App from "./App";
 import router from "./router";
 // 引入css
 import "./assets/css/reset.css";
+// 引入iocnfont
+import './assets/css/iconfont/iconfont.css'
+import './assets/css/iconfont/iconfont.js'
 // 引入ant样式
 import "ant-design-vue/dist/antd.css";
 
