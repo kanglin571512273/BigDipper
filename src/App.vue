@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <Head></Head>
-    <Sidebar></Sidebar>
-     <router-view/>
-    <!-- <Map></Map> -->
+    <Sidebar @circleShow="circleShow" @checkWd="handleCheckWd" @checkST="handlecheckST" @checkBankWD="handleCheckBankWD"></Sidebar>
+     <!-- <router-view/> -->
+    <Map :bankCircleShow="bankCircleShow" :bussinessCenterShow="bussinessCenterShow" :stShow="stShow" :bankWDShow="bankWDShow"></Map>
   </div>
 </template>
 
@@ -14,6 +14,38 @@ import Map from "@/components/map.vue"
 export default {
    components: {
     Head,Sidebar,Map
+  },
+  data () {
+    return {
+      bankCircleShow: false,
+      bussinessCenterShow: false,
+      stShow: false,
+      bankWDShow: false,
+    }
+  },
+  methods: {
+    circleShow(value) {
+      this.bankCircleShow = value;
+      // console.log(this.bankCircleShow)
+    },
+    handleCheckWd(value) {
+      let checkList = value;
+      this.bussinessCenterShow = value.includes(1) ? true : false;
+      // console.log('----------checkWD-----------')
+      // console.log(this.bussinessCenterShow);
+    },
+    handlecheckST(value) {
+      let checkList = value;
+      this.stShow = value.includes('A') ? true : false;
+      // console.log('----------checkST-----------')
+      // console.log(this.stShow);
+    },
+    handleCheckBankWD(value) {
+      let checkList = value;
+      this.bankWDShow = value.includes('A') ? true : false;
+      // console.log('----------bankWDShow-----------')
+      // console.log(this.bankWDShow);
+    }
   }
 }
 </script>

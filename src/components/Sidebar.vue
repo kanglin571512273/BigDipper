@@ -1,13 +1,15 @@
 <template>
   <div class="Sidebar">
     <a-tabs default-active-key="1" @change="callback">
-      <a-tab-pane key="1" tab="网点">
+      <a-tab-pane key="1" tab="网点" >
         <a-tree-select
           style="width: 300px;margin-bottom:10px"
           :dropdown-style="{ maxHeight: '400px', overflow: 'auto',}"
           :tree-data="options"
+          v-model="valueWDBank"
           placeholder="请选择机构名称"
           allowClear
+          @change="onBankChange"
         >
           <span
             v-if="key === '0-0-1'"
@@ -25,7 +27,7 @@
         </div>
         <div class="digital lndependent">网点35个，自助银行16个。</div>
         <div class="radioGroups">
-          <a-checkbox-group @change="onChange">
+          <a-checkbox-group @change="onWDChange">
             <div class="radioGroup-lint">
               <a-checkbox :value="1">
                 营业中心
@@ -55,36 +57,6 @@
               </a-checkbox>
             </div>
           </a-checkbox-group>
-          <!-- <a-radio-group name="radioGroup" :default-value="1">
-            <div class="radioGroup-lint">
-              <a-radio :value="1">
-                营业中心
-                <span class="digital">9</span>
-              </a-radio>
-              <a-radio :value="2">
-                商圈型
-                <span class="digital">7</span>
-              </a-radio>
-              <a-radio :value="3">
-                社区型
-                <span class="digital">9</span>
-              </a-radio>
-            </div>
-            <div class="radioGroup-lint">
-              <a-radio :value="4">
-                乡政型
-                <span class="digital">2</span>
-              </a-radio>
-              <a-radio :value="5" style="margin-left: 13px;">
-                市场型
-                <span class="digital">5</span>
-              </a-radio>
-              <a-radio :value="6">
-                园区型
-                <span class="digital">6</span>
-              </a-radio>
-            </div>
-          </a-radio-group>-->
         </div>
         <div class="classification">距离：</div>
         <a-radio-group name="radioGroup" :default-value="2">
@@ -162,7 +134,7 @@
           </div>
         </div>
         <div>
-          <a-checkbox-group @change="onChange">
+          <a-checkbox-group @change="onSTChange">
             <a-row>
               <a-col :span="12">
                 <a-checkbox value="A">
@@ -241,19 +213,19 @@
         </div>
         <div class="classification">银行网点：</div>
         <div>
-          <a-checkbox-group @change="onChange">
+          <a-checkbox-group @change="onBankCheckChange">
             <a-row>
               <a-col :span="8">
                 <a-checkbox value="A">
               <img src="../assets/mark/abc_mid.png" alt="icon" />
                   农行
-                  <span class="digital">3</span>
+                  <span class="digital">2</span>
                 </a-checkbox>
               </a-col>
               <a-col :span="8">
                 <a-checkbox value="B">
                   工行
-                  <span class="digital">2</span>
+                  <span class="digital">3</span>
                 </a-checkbox>
               </a-col>
               <a-col :span="8">
@@ -468,7 +440,6 @@
               @ok="hideModal"
             >
               <Panorama></Panorama>
-              <!-- <Message></Message> -->
             </a-modal>
           </div>
         </div>
@@ -1085,7 +1056,6 @@
 </template>
 <script>
 import Panorama from "@/components/Panorama.vue";
-import Message from "@/components/Message.vue";
 import Vue from "vue";
 import {
   Tabs,
@@ -1114,13 +1084,13 @@ Vue.use(TreeSelect);
 export default {
   components: {
     Panorama,
-    Message,
   },
   data() {
     return {
       num: 0,
       visible: false,
       visibles: false,
+      bankCircleShow: false,
       options: [
         {
           value: "hangzhou",
@@ -1165,6 +1135,7 @@ export default {
           ],
         },
       ],
+      valueWDBank: null,
     };
   },
   methods: {
@@ -1202,6 +1173,21 @@ export default {
           this.num = 5;
         default:
       }
+    },
+    onBankChange(value, label) {
+      this.bankCircleShow = value === "hubin" ? true : false;
+      console.log(this.valueWDBank)
+      this.$emit('circleShow', this.bankCircleShow)
+    },
+    onWDChange(checkValues) {
+      // console.log(checkValues)
+      this.$emit('checkWd', checkValues)
+    },
+    onSTChange(checkValues) {
+      this.$emit('checkST', checkValues)
+    },
+    onBankCheckChange(checkValues) {
+      this.$emit('checkBankWD', checkValues)
     },
     onChange(checkedValues) {
       console.log("checked = ", checkedValues);
