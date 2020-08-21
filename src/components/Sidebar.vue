@@ -245,6 +245,7 @@
             <a-row>
               <a-col :span="8">
                 <a-checkbox value="A">
+              <img src="../assets/mark/abc_mid.png" alt="icon" />
                   农行
                   <span class="digital">3</span>
                 </a-checkbox>
@@ -286,7 +287,7 @@
         <div class="agriculture-box">
           <div>
             <span>
-              <img src="../assets/img/abc_mid.png" alt="icon" />
+              <img src="../assets/mark/abc_mid.png" alt="icon" />
             </span>
             <span>农业银行城东支行</span>
           </div>
@@ -295,7 +296,7 @@
         <div class="agriculture-box">
           <div>
             <span>
-              <img src="../assets/img/abc_mid.png" alt="icon" />
+              <img src="../assets/mark/abc_mid.png" alt="icon" />
             </span>
             <span>农业银行西湖支行</span>
           </div>
@@ -304,7 +305,7 @@
         <div class="agriculture-box">
           <div>
             <span>
-              <img src="../assets/img/abc_mid.png" alt="icon" />
+              <img src="../assets/mark/abc_mid.png" alt="icon" />
             </span>
             <span>农业银行拱墅支行</span>
           </div>
@@ -313,7 +314,7 @@
         <div class="agriculture-box">
           <div>
             <span>
-              <img src="../assets/img/cmb_mid.png" alt="icon" />
+              <img src="../assets/mark/cmb_mid.png" alt="icon" />
             </span>
             <span>招商银行延安路支行</span>
           </div>
