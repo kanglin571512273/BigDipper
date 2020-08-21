@@ -258,7 +258,7 @@
         <div class="agriculture-box">
           <div>
             <span>
-              <img src="../assets/img/abc_mid.png" alt="icon" />
+              <img src="../assets/mark/abc_mid.png" alt="icon" />
             </span>
             <span>农业银行城东支行</span>
           </div>
@@ -267,7 +267,7 @@
         <div class="agriculture-box">
           <div>
             <span>
-              <img src="../assets/img/abc_mid.png" alt="icon" />
+              <img src="../assets/mark/abc_mid.png" alt="icon" />
             </span>
             <span>农业银行西湖支行</span>
           </div>
@@ -276,7 +276,7 @@
         <div class="agriculture-box">
           <div>
             <span>
-              <img src="../assets/img/abc_mid.png" alt="icon" />
+              <img src="../assets/mark/abc_mid.png" alt="icon" />
             </span>
             <span>农业银行拱墅支行</span>
           </div>
@@ -285,7 +285,7 @@
         <div class="agriculture-box">
           <div>
             <span>
-              <img src="../assets/img/cmb_mid.png" alt="icon" />
+              <img src="../assets/mark/cmb_mid.png" alt="icon" />
             </span>
             <span>招商银行延安路支行</span>
           </div>
@@ -299,6 +299,7 @@
           :tree-data="options"
           placeholder="请选择机构名称"
           allowClear
+          @change="onBankChange"
         >
           <span
             v-if="key === '0-0-1'"
@@ -497,6 +498,7 @@
           :tree-data="options"
           placeholder="请选择机构名称"
           allowClear
+          @change="onBankChange"
         >
           <span
             v-if="key === '0-0-1'"
@@ -538,7 +540,7 @@
             <div class="wage" @click="changeStatus($event,6)">无贷户 35</div>
           </div>
           <div class="classification">距离：</div>
-          <a-radio-group name="radioGroup" :default-value="2">
+          <a-radio-group name="radioGroup" :default-value="2" >
             <div class="radioGroup-lint">
               <a-radio :value="2">1公里</a-radio>
               <a-radio :value="1">3公里</a-radio>
@@ -919,6 +921,7 @@
           :tree-data="options"
           placeholder="请选择机构名称"
           allowClear
+          @change="onBankChange"
         >
           <span
             v-if="key === '0-0-1'"
@@ -932,12 +935,12 @@
           <a-checkbox @change="onChange">全选</a-checkbox>
         </div>
         <div>
-          <a-checkbox-group @change="onChange">
+          <a-checkbox-group @change="onSQFLChange">
             <a-row>
               <a-col :span="12">
                 <a-checkbox value="E">
                   创意园
-                  <span class="digital">12</span>
+                  <span class="digital">2</span>
                 </a-checkbox>
               </a-col>
               <a-col :span="12">
@@ -1089,7 +1092,7 @@ export default {
       num: 0,
       visible: false,
       visibles: false,
-      bankCircleShow: false,
+      bankCircleShow1: false,
       options: [
         {
           value: "hangzhou",
@@ -1135,6 +1138,8 @@ export default {
         },
       ],
       valueWDBank: null,
+      curKey: 1,
+      disRadioShow3: false,
     };
   },
   methods: {
@@ -1146,7 +1151,9 @@ export default {
       this.visibles = false;
     },
     callback(key) {
-      console.log(key);
+      // console.log(key);
+      this.curKey = key;
+      this.$emit('tabKey', key)
     },
     handleChange(value) {
       console.log(value); // { key: "lucy", label: "Lucy (101)" }
@@ -1155,6 +1162,8 @@ export default {
       // if(value.key=="jack"){
       //     this.num=1
       // }
+      this.disRadioShow3 = true;
+      this.$emit('disRadio', this.disRadioShow3)
       switch (value.key) {
         case "jack":
           this.num = 1;
@@ -1174,9 +1183,20 @@ export default {
       }
     },
     onBankChange(value, label) {
-      this.bankCircleShow = value === "hubin" ? true : false;
-      console.log(this.valueWDBank)
-      this.$emit('circleShow', this.bankCircleShow)
+      if(this.curKey == '1'){
+        this.bankCircleShow1 = value === "hubin" ? true : false;
+        // console.log(this.valueWDBank)
+        this.$emit('circleShow1', this.bankCircleShow1, this.curKey);
+      } else if (this.curKey == '2') {
+        let bankCircleShow2 = value === "hubin" ? true : false;
+        this.$emit('circleShow2', bankCircleShow2, this.curKey);
+      } else if (this.curKey == '3') {
+        let bankCircleShow3 = value === "hubin" ? true : false;
+        this.$emit('circleShow3', bankCircleShow3, this.curKey);
+      } else if (this.curKey == '4') {
+        let bankCircleShow4 = value === "hubin" ? true : false;
+        this.$emit('circleShow4', bankCircleShow4, this.curKey);
+      }
     },
     onWDChange(checkValues) {
       // console.log(checkValues)
@@ -1187,6 +1207,10 @@ export default {
     },
     onBankCheckChange(checkValues) {
       this.$emit('checkBankWD', checkValues)
+    },
+    onSQFLChange(checkValues) {
+      // console.log(checkValues)
+      this.$emit('checkSQFL', checkValues)
     },
     onChange(checkedValues) {
       console.log("checked = ", checkedValues);
