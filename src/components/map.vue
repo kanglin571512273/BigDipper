@@ -158,26 +158,26 @@
 </template>
 
 <script>
+import Bus from "../api/bus"
 import markerZHIcon from "../assets/mark/cmb_mid.png";
 import markerSTIcon from "../assets/mark/st_fczj.png";
 import markerYYIcon from "../assets/mark/abc_mid.png";
 import MapInfo from "@/components/mapInfoWindow.vue";
 export default {
   name: "Map",
-  props: {
-    bankCircleShow1: Boolean,
-    bankCircleShow2: Boolean,
-    bankCircleShow3: Boolean,
-    bankCircleShow4: Boolean,
-    disRadioShow3: Boolean,
-    bussinessCenterShow: Boolean,
-    stShow: Boolean,
-    bankWDShow: Boolean,
-    curTabKey: Number,
-    sqCYYShow: Boolean,
-  },
   data() {
     return {
+      curTabKey: 1,
+      bankCircleShow1: false,
+      bussinessCenterShow: false,
+      stShow: false,
+      bankWDShow: false,
+      bankCircleShow2: false,
+      bankCircleShow3: false,
+      bankCircleShow4: false,
+      disRadioShow3: false,
+      sqCYYShow: false,
+
       show: false,
       zIndex: 99000000,
       circlePath: {
@@ -218,6 +218,42 @@ export default {
       stIcon: markerSTIcon,
       yyIcon: markerYYIcon,
     };
+  },
+  mounted() {
+    Bus.$on("tabKey", (key) => {
+      this.curTabKey = parseInt(key, 10);
+    });
+    Bus.$on("circleShow1", (value) => {
+      this.bankCircleShow1 = value;
+    });
+    Bus.$on("checkWd", (value) => {
+      let checkList = value;
+      this.bussinessCenterShow = value.includes(1) ? true : false;
+    });
+    Bus.$on("checkST", (value) => {
+      let checkList = value;
+      this.stShow = value.includes("A") ? true : false;
+    });
+    Bus.$on("checkBankWD", (value) => {
+      let checkList = value;
+      this.bankWDShow = value.includes("A") ? true : false;
+    });
+    Bus.$on("circleShow2", (value) => {
+      this.bankCircleShow2 = value;
+    });
+    Bus.$on("circleShow3", (value) => {
+      this.bankCircleShow3 = value;
+    });
+    Bus.$on("circleShow4", (value) => {
+      this.bankCircleShow4 = value;
+    });
+    Bus.$on("disRadio", (value) => {
+      this.disRadioShow3 = value;
+    });
+    Bus.$on("checkSQFL", (value) => {
+      let checkList = value;
+      this.sqCYYShow = value.includes("E") ? true : false;
+    });
   },
   methods: {
     handler({ BMap, map }) {
