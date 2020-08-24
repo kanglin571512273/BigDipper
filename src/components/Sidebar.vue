@@ -1,7 +1,7 @@
 <template>
   <div class="Sidebar">
     <a-tabs default-active-key="1" @change="callback">
-      <a-tab-pane key="1" tab="网点" >
+      <a-tab-pane key="1" tab="网点">
         <a-tree-select
           style="width: 300px;margin-bottom:10px"
           :dropdown-style="{ maxHeight: '400px', overflow: 'auto',}"
@@ -70,7 +70,7 @@
         </a-radio-group>
         <div class="classification">
           生态：
-          <div style="    margin-right: 13px;">
+          <div style="margin-right: 13px;">
             <a-checkbox @change="onChange">全选</a-checkbox>
             <a-button type="primary" size="small" @click="showModals">新增</a-button>
             <a-modal
@@ -217,37 +217,42 @@
             <a-row>
               <a-col :span="8">
                 <a-checkbox value="A">
-              <img src="../assets/mark/abc_mid.png" alt="icon" />
-                  农行
+                  <img src="../assets/mark/cmb_mid.png" alt="icon" />
+                  招行
                   <span class="digital">2</span>
                 </a-checkbox>
               </a-col>
               <a-col :span="8">
                 <a-checkbox value="B">
+                  <img src="../assets/mark/icbc_mid.png" alt="icon" />
                   工行
                   <span class="digital">3</span>
                 </a-checkbox>
               </a-col>
               <a-col :span="8">
                 <a-checkbox value="C">
+                  <img src="../assets/mark/ccb_mid.png" alt="icon" />
                   建行
                   <span class="digital">2</span>
                 </a-checkbox>
               </a-col>
               <a-col :span="8">
                 <a-checkbox value="D">
+                  <img src="../assets/mark/boc_mid.png" alt="icon" />
                   中行
                   <span class="digital">1</span>
                 </a-checkbox>
               </a-col>
               <a-col :span="8">
                 <a-checkbox value="E">
+                  <img src="../assets/mark/hzb_mid.png" alt="icon" />
                   杭银
                   <span class="digital">1</span>
                 </a-checkbox>
               </a-col>
               <a-col :span="8">
                 <a-checkbox value="F">
+                  <img src="../assets/mark/qtyh_mid.png" alt="icon" />
                   其他
                   <span class="digital">5</span>
                 </a-checkbox>
@@ -541,7 +546,7 @@
             <div class="wage" @click="changeStatus($event,6)">无贷户 35</div>
           </div>
           <div class="classification">距离：</div>
-          <a-radio-group name="radioGroup" :default-value="2" >
+          <a-radio-group name="radioGroup" :default-value="2">
             <div class="radioGroup-lint">
               <a-radio :value="2">1公里</a-radio>
               <a-radio :value="1">3公里</a-radio>
@@ -1107,6 +1112,14 @@ export default {
                   value: "hubin",
                   label: "湖滨支行",
                 },
+                {
+                  value: "nonghang",
+                  label: "农行城西支行",
+                },
+                {
+                  value: "kejicheng",
+                  label: "农行科技城支行",
+                },
               ],
             },
             {
@@ -1114,24 +1127,30 @@ export default {
               label: "余杭支行",
               children: [
                 {
-                  value: "xihua",
-                  label: "West Lake",
+                  value: "xianlin",
+                  label: "农行闲林支行",
+                },
+                {
+                  value: "linping",
+                  label: "农行临平支行",
+                },
+                {
+                  value: "nonghangyuhang",
+                  label: "农行余杭支行",
+                },
+                {
+                  value: "qiushan",
+                  label: "农行丘山支行",
                 },
               ],
             },
-          ],
-        },
-        {
-          value: "sahnghai",
-          label: "上海分行",
-          children: [
             {
-              value: "nanjing",
-              label: "Nanjing",
+              value: "gongshu",
+              label: "拱墅支行",
               children: [
                 {
-                  value: "zhonghuamen",
-                  label: "Zhong Hua Men",
+                  value: "zhijiang",
+                  label: "农行之江支行",
                 },
               ],
             },
@@ -1154,7 +1173,7 @@ export default {
     callback(key) {
       // console.log(key);
       this.curKey = key;
-      this.$emit('tabKey', key)
+      this.$emit("tabKey", key);
     },
     handleChange(value) {
       console.log(value); // { key: "lucy", label: "Lucy (101)" }
@@ -1164,7 +1183,7 @@ export default {
       //     this.num=1
       // }
       this.disRadioShow3 = true;
-      this.$emit('disRadio', this.disRadioShow3)
+      this.$emit("disRadio", this.disRadioShow3);
       switch (value.key) {
         case "jack":
           this.num = 1;
@@ -1184,34 +1203,34 @@ export default {
       }
     },
     onBankChange(value, label) {
-      if(this.curKey == '1'){
+      if (this.curKey == "1") {
         this.bankCircleShow1 = value === "hubin" ? true : false;
         // console.log(this.valueWDBank)
-        this.$emit('circleShow1', this.bankCircleShow1, this.curKey);
-      } else if (this.curKey == '2') {
+        this.$emit("circleShow1", this.bankCircleShow1, this.curKey);
+      } else if (this.curKey == "2") {
         let bankCircleShow2 = value === "hubin" ? true : false;
-        this.$emit('circleShow2', bankCircleShow2, this.curKey);
-      } else if (this.curKey == '3') {
+        this.$emit("circleShow2", bankCircleShow2, this.curKey);
+      } else if (this.curKey == "3") {
         let bankCircleShow3 = value === "hubin" ? true : false;
-        this.$emit('circleShow3', bankCircleShow3, this.curKey);
-      } else if (this.curKey == '4') {
+        this.$emit("circleShow3", bankCircleShow3, this.curKey);
+      } else if (this.curKey == "4") {
         let bankCircleShow4 = value === "hubin" ? true : false;
-        this.$emit('circleShow4', bankCircleShow4, this.curKey);
+        this.$emit("circleShow4", bankCircleShow4, this.curKey);
       }
     },
     onWDChange(checkValues) {
       // console.log(checkValues)
-      this.$emit('checkWd', checkValues)
+      this.$emit("checkWd", checkValues);
     },
     onSTChange(checkValues) {
-      this.$emit('checkST', checkValues)
+      this.$emit("checkST", checkValues);
     },
     onBankCheckChange(checkValues) {
-      this.$emit('checkBankWD', checkValues)
+      this.$emit("checkBankWD", checkValues);
     },
     onSQFLChange(checkValues) {
       // console.log(checkValues)
-      this.$emit('checkSQFL', checkValues)
+      this.$emit("checkSQFL", checkValues);
     },
     onChange(checkedValues) {
       console.log("checked = ", checkedValues);
@@ -1259,7 +1278,7 @@ export default {
   font-size: 14px;
   color: rgba(24, 144, 255, 1);
   line-height: 22px;
-  margin-top: 30px;
+  margin-top: 10px;
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
@@ -1298,8 +1317,8 @@ export default {
   text-align: left;
 }
 
-.ant-tabs-nav .ant-tabs-tab {
-  margin: 0;
+.ant-tabs-nav>.ant-tabs-tab{
+  margin 0
 }
 
 .line {

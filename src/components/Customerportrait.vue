@@ -705,6 +705,7 @@ export default {
               margin: 10,
 
               textStyle: {
+                color: "#000",
                 fontSize: 14,
               },
             },
@@ -713,10 +714,15 @@ export default {
         yAxis: [
           {
             name: "百万",
+            // color:'#000',
             axisLabel: {
               type: "value",
               // formatter: "{value}百万",
               // color: fontColor,
+              textStyle: {
+                color: "#000",
+                fontSize: 14,
+              },
             },
             axisTick: {
               show: false,
@@ -885,23 +891,23 @@ export default {
             category: 0,
           },
           {
-            name: "JavaScript科技",
+            name: "浙江迈磊凯家具公司",
             category: 0,
           },
           {
-            name: "Chrome",
+            name: "浙江创峰科技有限公司",
             category: 1,
           },
           {
-            name: "IE",
+            name: "浙江亿扬科技有限公司",
             category: 1,
           },
           {
-            name: "Firefox",
+            name: "浙江速达科技有限公司",
             category: 1,
           },
           {
-            name: "Safari",
+            name: "浙江锋千亚网络公司",
             category: 1,
           },
         ],
@@ -919,27 +925,27 @@ export default {
           },
 
           {
-            source: "JavaScript科技",
+            source: "浙江迈磊凯家具公司",
             target: "杭州爱迷尚服装公司",
             name: "参股",
           },
           {
-            source: "Chrome",
+            source: "浙江创峰科技有限公司",
             target: "杭州爱迷尚服装公司",
             name: "投资",
           },
           {
-            source: "IE",
+            source: "浙江亿扬科技有限公司",
             target: "杭州爱迷尚服装公司",
             name: "投资",
           },
           {
-            source: "Firefox",
+            source: "浙江速达科技有限公司",
             target: "杭州爱迷尚服装公司",
             name: "投资",
           },
           {
-            source: "Safari",
+            source: "浙江锋千亚网络公司",
             target: "杭州爱迷尚服装公司",
             name: "投资",
           },
