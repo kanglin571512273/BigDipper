@@ -26,107 +26,17 @@
     </div>
     <div>
       <a-checkbox-group @change="onChange">
-        <a-row>
-          <a-col :span="12">
-            <a-checkbox value="A">
-              百行进万企业
-              <span class="digital">23</span>
-            </a-checkbox>
-          </a-col>
-          <a-col :span="12">
-            <a-checkbox value="B">
-              五件完成情况
-              <span class="digital">43</span>
-            </a-checkbox>
-          </a-col>
-          <a-col :span="14">
-            <a-checkbox value="C">
-              政府采购供应商
-              <span class="digital">45</span>
-            </a-checkbox>
-          </a-col>
-          <a-col :span="14">
-            <a-checkbox value="D">
-              拟授信上市公司
-              <span class="digital">23</span>
-            </a-checkbox>
-          </a-col>
-        </a-row>
-        <div class="line"></div>
-        <a-row>
-          <a-col :span="12">
-            <a-checkbox value="E">
-              省属国企
-              <span class="digital">12</span>
-            </a-checkbox>
-          </a-col>
-          <a-col :span="12">
-            <a-checkbox value="F">
-              市属国企
-              <span class="digital">54</span>
-            </a-checkbox>
-          </a-col>
-          <a-col :span="12">
-            <a-checkbox value="G">
-              重点民企
-              <span class="digital">67</span>
-            </a-checkbox>
-          </a-col>
-          <a-col :span="12">
-            <a-checkbox value="H">
-              纳税大户
-              <span class="digital">34</span>
-            </a-checkbox>
-          </a-col>
-          <a-col :span="12">
-            <a-checkbox value="I">
-              发债客户
-              <span class="digital">2</span>
-            </a-checkbox>
-          </a-col>
-          <a-col :span="12">
-            <a-checkbox value="J">
-              凤凰行动
-              <span class="digital">2</span>
-            </a-checkbox>
-          </a-col>
-        </a-row>
-        <div class="line"></div>
-        <a-row>
-          <a-col :span="14">
-            <a-checkbox value="01">
-              中央行政事业单位
-              <span class="digital">4</span>
-            </a-checkbox>
-          </a-col>
-          <a-col :span="14">
-            <a-checkbox value="02">
-              市级行政事业单位
-              <span class="digital">32</span>
-            </a-checkbox>
-          </a-col>
-          <a-col :span="14">
-            <a-checkbox value="03">
-              区县行政事业单位
-              <span class="digital">54</span>
-            </a-checkbox>
-          </a-col>
-        </a-row>
-        <div class="line"></div>
-        <a-row>
-          <a-col :span="12">
-            <a-checkbox value="04">
-              国际结算大户
-              <span class="digital">21</span>
-            </a-checkbox>
-          </a-col>
-          <a-col :span="12">
-            <a-checkbox value="05">
-              农业龙头企业
-              <span class="digital">64</span>
-            </a-checkbox>
-          </a-col>
-        </a-row>
+        <div v-for="(itemList, index) in customStyleList" :key="index">
+          <a-row>
+            <a-col :span="12" v-for="item in itemList" :key="item.id">
+              <a-checkbox :value="item.id">
+                {{item.name}}
+                <span class="digital">{{item.count1}}</span>
+              </a-checkbox>
+            </a-col>
+          </a-row>
+          <div v-if="index != customStyleList.length - 1" class="line"></div>
+        </div>
       </a-checkbox-group>
     </div>
     <div class="classification">距离：</div>
@@ -163,43 +73,15 @@
           <th>总客类别</th>
           <th>户数</th>
         </tr>
-        <tr>
+        <tr v-for="(item, index) in cusCountList" :key="index">
           <td></td>
           <td>
             <svg class="icon" aria-hidden="true">
-              <use xlink:href="#iconzong-kongxinhong" /></svg
+              <use :xlink:href="item.icon" /></svg
             >&nbsp;&nbsp;
-            <span>总客户数</span>
+            <span>{{item.name}}</span>
           </td>
-          <td>422</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>
-            <svg class="icon" aria-hidden="true">
-              <use xlink:href="#iconyikaihu-huang" /></svg
-            >&nbsp;&nbsp;
-            <span>以开户数</span>
-          </td>
-          <td>50</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>
-            <svg class="icon" aria-hidden="true">
-              <use xlink:href="#iconyiduijie-zise" /></svg
-            >&nbsp;&nbsp;已对接数
-          </td>
-          <td>320</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>
-            <svg class="icon" aria-hidden="true">
-              <use xlink:href="#iconyiduijie-zisebeifen" /></svg
-            >&nbsp;&nbsp;大数据推荐
-          </td>
-          <td>500</td>
+          <td>{{item.count}}</td>
         </tr>
       </table>
     </div>
@@ -244,6 +126,37 @@ export default {
     return {
       visible: false,
       options: bankList,
+      customStyleList:[
+        [
+          {id:"A",name:"百行进万企业",count1:23,count2:34},
+          {id:"B",name:"五件完成情况",count1:13,count2:10},
+          {id:"C",name:"政府采购供应商",count1:34,count2:23},
+          {id:"D",name:"拟授信上市公司",count1:36,count2:20},
+        ],
+        [
+          {id:"E",name:"省属国企",count1:12,count2:34},
+          {id:"F",name:"市属国企",count1:54,count2:10},
+          {id:"G",name:"重点民企",count1:67,count2:23},
+          {id:"H",name:"纳税大户",count1:34,count2:20},
+          {id:"I",name:"发债客户",count1:2,count2:23},
+          {id:"J",name:"凤凰行动",count1:2,count2:20},
+        ],
+        [
+          {id:"01",name:"中央行政事业单位",count1:4,count2:34},
+          {id:"02",name:"市级行政事业单位",count1:32,count2:10},
+          {id:"03",name:"区县行政事业单位",count1:54,count2:23},
+        ],
+        [
+          {id:"04",name:"国际结算大户",count1:21,count2:20},
+          {id:"05",name:"农业龙头企业",count1:64,count2:23},
+        ]
+      ],
+      cusCountList: [
+        {name:'总客户数', count: 422, icon:"#iconzong-kongxinhong"},
+        {name:'以开户数', count: 50, icon:"#iconyikaihu-huang"},
+        {name:'已对接数', count: 320, icon:"#iconyiduijie-zise"},
+        {name:'大数据推荐', count: 500, icon:"#iconyiduijie-zisebeifen"},
+      ]
     };
   },
   methods: {

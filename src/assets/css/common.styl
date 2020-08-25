@@ -38,7 +38,15 @@
   width: 300px;
   margin-bottom: 10px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
+  .checkbox {
+    width: 100px;
+    flex-shrink: 0;
+  }
+  .ant-checkbox-wrapper + .ant-checkbox-wrapper {
+    margin-left: 0px !important;
+  }
 }
 
 .agriculture-box {
@@ -153,7 +161,7 @@ table.gridtable td {
 }
 
 .nextype {
-  width: 59%;
+  width: 50%;
   text-align: left;
   margin-left: 70px;
   div {

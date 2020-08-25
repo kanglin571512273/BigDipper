@@ -19,40 +19,18 @@
     </a-tree-select>
     <div class="classification">分类：</div>
     <div>
-      <a-radio-group default-value="a" button-style="solid">
-        <a-radio-button value="a" style="width:145px">网点</a-radio-button>
-        <a-radio-button value="b" style="width:145px">自主银行</a-radio-button>
+      <a-radio-group v-model="styleSelect" button-style="solid">
+        <a-radio-button v-for="item in styleList" :key="item.value" :value="item.value" style="width:145px">{{item.label}}</a-radio-button>
       </a-radio-group>
     </div>
     <div class="digital lndependent">网点35个，自助银行16个。</div>
     <div class="radioGroups">
       <a-checkbox-group @change="onWDChange">
         <div class="radioGroup-lint">
-          <a-checkbox :value="1">
-            营业中心
-            <span class="digital">9</span>
-          </a-checkbox>
-          <a-checkbox :value="2">
-            商圈型
-            <span class="digital">7</span>
-          </a-checkbox>
-          <a-checkbox :value="3">
-            社区型
-            <span class="digital">9</span>
-          </a-checkbox>
-        </div>
-        <div class="radioGroup-lint">
-          <a-checkbox :value="4">
-            乡政型
-            <span class="digital">2</span>
-          </a-checkbox>
-          <a-checkbox :value="5">
-            市场型
-            <span class="digital">5</span>
-          </a-checkbox>
-          <a-checkbox :value="6">
-            园区型
-            <span class="digital">6</span>
+          <a-checkbox class="checkbox" v-for="item in wdList" :key="item.id" :value="item.id">
+            {{item.label}}
+            <span class="digital" v-if="styleSelect==1">{{item.count1}}</span>
+            <span class="digital" v-else>{{item.count2}}</span>
           </a-checkbox>
         </div>
       </a-checkbox-group>
@@ -96,20 +74,7 @@
             <div class="ecotype margintop30">生态类型：</div>
             <div class="nextype">
               <a-checkbox-group @change="onChange">
-                <a-checkbox value="A">房产中介</a-checkbox>
-                <a-checkbox value="B">综合体</a-checkbox>
-                <a-checkbox value="C">专业市场</a-checkbox>
-                <a-checkbox value="D">创意园</a-checkbox>
-                <a-checkbox value="E">高档小区</a-checkbox>
-                <a-checkbox value="F">写字楼</a-checkbox>
-              </a-checkbox-group>
-              <a-checkbox-group>
-                <a-checkbox value="G">汽车租凭</a-checkbox>
-                <a-checkbox value="J">风景区</a-checkbox>
-                <a-checkbox value="I">在杭商会</a-checkbox>
-                <a-checkbox value="H">4S店&emsp;</a-checkbox>
-                <a-checkbox value="K">医院&#12288;&#12288;</a-checkbox>
-                <a-checkbox value="L">学校&emsp;</a-checkbox>
+                <a-checkbox v-for="item in stList" :key="item.id" :value="item.id">{{item.label}}</a-checkbox>
               </a-checkbox-group>
             </div>
             <div class="longname margintop30">
@@ -137,76 +102,10 @@
     <div>
       <a-checkbox-group @change="onSTChange">
         <a-row>
-          <a-col :span="12">
-            <a-checkbox value="A">
-              房产中介
-              <span class="digital">6</span>
-            </a-checkbox>
-          </a-col>
-          <a-col :span="12">
-            <a-checkbox value="B">
-              综合体
-              <span class="digital">4</span>
-            </a-checkbox>
-          </a-col>
-          <a-col :span="12">
-            <a-checkbox value="C">
-              专业市场
-              <span class="digital">8</span>
-            </a-checkbox>
-          </a-col>
-          <a-col :span="12">
-            <a-checkbox value="D">
-              创意园
-              <span class="digital">12</span>
-            </a-checkbox>
-          </a-col>
-          <a-col :span="12">
-            <a-checkbox value="E">
-              高档小区
-              <span class="digital">14</span>
-            </a-checkbox>
-          </a-col>
-          <a-col :span="12">
-            <a-checkbox value="F">
-              写字楼
-              <span class="digital">2</span>
-            </a-checkbox>
-          </a-col>
-          <a-col :span="12">
-            <a-checkbox value="G">
-              汽车租凭
-              <span class="digital">5</span>
-            </a-checkbox>
-          </a-col>
-          <a-col :span="12">
-            <a-checkbox value="H">
-              4 S 店
-              <span class="digital">6</span>
-            </a-checkbox>
-          </a-col>
-          <a-col :span="12">
-            <a-checkbox value="I">
-              在杭商会
-              <span class="digital">12</span>
-            </a-checkbox>
-          </a-col>
-          <a-col :span="12">
-            <a-checkbox value="J">
-              风景区
-              <span class="digital">5</span>
-            </a-checkbox>
-          </a-col>
-          <a-col :span="12">
-            <a-checkbox value="K">
-              &#12288;医院&#12288;
-              <span class="digital">4</span>
-            </a-checkbox>
-          </a-col>
-          <a-col :span="12">
-            <a-checkbox value="L">
-              学校&emsp;
-              <span class="digital">3</span>
+          <a-col :span="12" v-for="item in stList" :key="item.id">
+            <a-checkbox :value="item.id">
+              {{item.label}}
+              <span class="digital">{{item.count1}}</span>
             </a-checkbox>
           </a-col>
         </a-row>
@@ -216,81 +115,24 @@
     <div>
       <a-checkbox-group @change="onBankCheckChange">
         <a-row>
-          <a-col :span="8">
-            <a-checkbox value="A">
-              农行
-              <span class="digital">2</span>
-            </a-checkbox>
-          </a-col>
-          <a-col :span="8">
-            <a-checkbox value="B">
-              工行
-              <span class="digital">3</span>
-            </a-checkbox>
-          </a-col>
-          <a-col :span="8">
-            <a-checkbox value="C">
-              建行
-              <span class="digital">2</span>
-            </a-checkbox>
-          </a-col>
-          <a-col :span="8">
-            <a-checkbox value="D">
-              中行
-              <span class="digital">1</span>
-            </a-checkbox>
-          </a-col>
-          <a-col :span="8">
-            <a-checkbox value="E">
-              杭银
-              <span class="digital">1</span>
-            </a-checkbox>
-          </a-col>
-          <a-col :span="8">
-            <a-checkbox value="F">
-              其他
-              <span class="digital">5</span>
+          <a-col :span="8" v-for="item in bankList" :key="item.id">
+            <a-checkbox :value="item.id">
+              {{item.label}}
+              <span class="digital">{{item.count1}}</span>
             </a-checkbox>
           </a-col>
         </a-row>
       </a-checkbox-group>
     </div>
     <div class="classification">名称：</div>
-    <div class="agriculture-box">
+    <div class="agriculture-box" v-for="item in bankNameList" :key="item.id">
       <div>
         <span>
-          <img src="../assets/mark/abc_mid.png" alt="icon" />
+          <img :src="item.icon" alt="" />
         </span>
-        <span>农业银行城东支行</span>
+        <span>{{item.title}}</span>
       </div>
-      <div>251m</div>
-    </div>
-    <div class="agriculture-box">
-      <div>
-        <span>
-          <img src="../assets/mark/abc_mid.png" alt="icon" />
-        </span>
-        <span>农业银行西湖支行</span>
-      </div>
-      <div>451m</div>
-    </div>
-    <div class="agriculture-box">
-      <div>
-        <span>
-          <img src="../assets/mark/abc_mid.png" alt="icon" />
-        </span>
-        <span>农业银行拱墅支行</span>
-      </div>
-      <div>871m</div>
-    </div>
-    <div class="agriculture-box">
-      <div>
-        <span>
-          <img src="../assets/mark/cmb_mid.png" alt="icon" />
-        </span>
-        <span>招商银行延安路支行</span>
-      </div>
-      <div>678m</div>
+      <div>{{item.distance}}m</div>
     </div>
   </div>
 </template>
@@ -318,7 +160,45 @@ export default {
       visibles: false,
       options: bankList,
       valueWDBank: null,
-      bankCircleShow1: false
+      bankCircleShow1: false,
+      styleSelect: 1,
+      styleList:[{value:1,label:'网点'},{value:2,label:'自主银行'}],
+      wdList:[
+        {id:1, label:'营业中心', count1: 9, count2: 2},
+        {id:2, label:'商圈型', count1: 7, count2: 3},
+        {id:3, label:'社区型', count1: 9, count2: 2},
+        {id:4, label:'乡政型', count1: 2, count2: 1},
+        {id:5, label:'市场型', count1: 5, count2: 2},
+        {id:6, label:'园区型', count1: 6, count2: 5},
+      ],
+      stList:[
+        {id:"A", label:'房产中介', count1: 6, count2: 8},
+        {id:"B", label:'综合体', count1: 4, count2: 8},
+        {id:"C", label:'专业市场', count1: 8, count2: 9},
+        {id:"D", label:'创意园', count1: 12, count2: 15},
+        {id:"E", label:'高档小区', count1: 5, count2: 15},
+        {id:"F", label:'写字楼', count1: 6, count2: 10},
+        {id:"G", label:'汽车租凭', count1: 3, count2: 4},
+        {id:"H", label:'4 S 店', count1: 4, count2: 6},
+        {id:"I", label:'在杭商会', count1: 5, count2: 5},
+        {id:"J", label:'风景区', count1: 12, count2: 13},
+        {id:"K", label:'医院', count1: 4, count2: 6},
+        {id:"L", label:'学校', count1: 3, count2: 6},
+      ],
+      bankList:[
+        {id:"A", label:'农行', count1: 2, count2: 8},
+        {id:"B", label:'工行', count1: 3, count2: 8},
+        {id:"C", label:'建行', count1: 2, count2: 9},
+        {id:"D", label:'中行', count1: 1, count2: 15},
+        {id:"E", label:'杭银', count1: 1, count2: 15},
+        {id:"F", label:'其他', count1: 5, count2: 10},
+      ],
+      bankNameList:[
+        {id:"A", title:'农业银行城东支行', icon: require("../assets/mark/abc_mid.png"), distance: 251},
+        {id:"B", title:'农业银行西湖支行', icon: require("../assets/mark/abc_mid.png"), distance: 452},
+        {id:"C", title:'农业银行拱墅支行', icon: require("../assets/mark/abc_mid.png"), distance: 871},
+        {id:"D", title:'招商银行延安路支行', icon: require("../assets/mark/cmb_mid.png"), distance: 678},
+      ]
     }
   },
   methods: {
