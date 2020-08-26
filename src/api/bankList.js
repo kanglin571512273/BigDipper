@@ -1,60 +1,108 @@
-
 export default [
   {
-    value: "hangzhou",
-    label: "杭州分行",
+    value: "zhejiang",
+    label: "浙江省分行",
     children: [
       {
-        value: "xihu",
-        label: "西湖支行",
+        value: "hangzhou",
+        label: "杭州分行",
         children: [
           {
-            value: "hubin",
-            label: "湖滨支行",
+            value: "yananlu",
+            label: "延安路支行",
+            children: [
+              {
+                value: "hubin",
+                label: "杭州延庆支行"
+              },
+              {
+                value: "shiwu",
+                label: "杭州十五家园支行"
+              },
+              {
+                value: "jianggan",
+                label: "杭州江干支行"
+              },
+              {
+                value: "xiacheng",
+                label: "杭州下城支行"
+              }
+            ]
           },
           {
-            value: "nonghang",
-            label: "农行城西支行",
+            value: "xihu",
+            label: "西湖支行",
+            children: [
+              {
+                value: "wensnalu",
+                label: "杭州文三路支行"
+              },
+              {
+                value: "dasha",
+                label: "杭州大厦支行"
+              },
+              {
+                value: "jiahui",
+                label: "杭州嘉汇支行"
+              },
+              {
+                value: "wenlv",
+                label: "杭州文旅支行"
+              }
+            ]
           },
           {
-            value: "kejicheng",
-            label: "农行科技城支行",
+            value: "baoshu",
+            label: "保俶支行",
+            children: [
+              {
+                value: "xueyuanlu",
+                label: "杭州学院路支行"
+              },
+              {
+                value: "huanglong",
+                label: "杭州黄龙支行"
+              },
+              {
+                value: "fenghua",
+                label: "杭州枫华支行"
+              },
+              {
+                value: "wenjiao",
+                label: "杭州文教支行"
+              }
+            ]
           },
-        ],
-      },
-      {
-        value: "yuhang",
-        label: "余杭支行",
-        children: [
           {
-            value: "xianlin",
-            label: "农行闲林支行",
+            value: "zhongshan",
+            label: "中山支行",
+            children: [
+              {
+                value: "wangjiang",
+                label: "杭州望江支行"
+              },
+              {
+                value: "wushan",
+                label: "杭州吴山支行"
+              }
+            ]
           },
           {
-            value: "linping",
-            label: "农行临平支行",
-          },
-          {
-            value: "nonghangyuhang",
-            label: "农行余杭支行",
-          },
-          {
-            value: "qiushan",
-            label: "农行丘山支行",
-          },
-        ],
-      },
-      {
-        value: "gongshu",
-        label: "拱墅支行",
-        children: [
-          {
-            value: "zhijiang",
-            label: "农行之江支行",
-          },
-        ],
-      },
-    ],
-  },
-]
-
+            value: "chengxi",
+            label: "城西支行",
+            children: [
+              {
+                value: "wenxinglu",
+                label: "杭州文新路支行"
+              },
+              {
+                value: "gudang",
+                label: "杭州古荡支行"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+];
