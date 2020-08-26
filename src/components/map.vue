@@ -6,6 +6,7 @@
       :zoom="15"
       :min-zoom="13"
       :scroll-wheel-zoom="true"
+      :mapStyle="mapStyle"
       @ready="handler"
     >
       <bm-navigation anchor="BMAP_ANCHOR_TOP_LEFT" :offset="{ width: 0, height: 70 }"></bm-navigation>
@@ -158,7 +159,7 @@
 </template>
 
 <script>
-import Bus from "../api/bus"
+import Bus from "../api/bus";
 import markerZHIcon from "../assets/mark/cmb_mid.png";
 import markerSTIcon from "../assets/mark/st_fczj.png";
 import markerYYIcon from "../assets/mark/abc_mid.png";
@@ -177,7 +178,6 @@ export default {
       bankCircleShow4: false,
       disRadioShow3: false,
       sqCYYShow: false,
-
       show: false,
       zIndex: 99000000,
       circlePath: {
@@ -217,6 +217,52 @@ export default {
       bankWDIcon: markerZHIcon,
       stIcon: markerSTIcon,
       yyIcon: markerYYIcon,
+      mapStyle: {
+        styleJson: [
+          {
+            featureType: "road",
+            elementType: "all",
+            stylers: {
+              lightness: 20,
+            },
+          },
+          {
+            featureType: "highway",
+            elementType: "geometry",
+            stylers: {
+              color: "#f49935",
+            },
+          },
+          {
+            featureType: "railway",
+            elementType: "all",
+            stylers: {
+              visibility: "off",
+            },
+          },
+          {
+            featureType: "local",
+            elementType: "labels",
+            stylers: {
+              visibility: "off",
+            },
+          },
+          {
+            featureType: "water",
+            elementType: "all",
+            stylers: {
+              color: "#d1e5ff",
+            },
+          },
+          {
+            featureType: "airportlabel",
+            elementType: "all",
+            stylers: {
+              visibility: "on",
+            },
+          },
+        ],
+      },
     };
   },
   mounted() {
