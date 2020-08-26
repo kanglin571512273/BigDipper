@@ -186,7 +186,7 @@ export default {
         {id:"L", label:'学校', count1: 3, count2: 6},
       ],
       bankList:[
-        {id:"A", label:'农行', count1: 2, count2: 8},
+        {id:"A", label:'招行', count1: 2, count2: 8},
         {id:"B", label:'工行', count1: 3, count2: 8},
         {id:"C", label:'建行', count1: 2, count2: 9},
         {id:"D", label:'中行', count1: 1, count2: 15},
@@ -194,9 +194,9 @@ export default {
         {id:"F", label:'其他', count1: 5, count2: 10},
       ],
       bankNameList:[
-        {id:"A", title:'农业银行城东支行', icon: require("../assets/mark/abc_mid.png"), distance: 251},
-        {id:"B", title:'农业银行西湖支行', icon: require("../assets/mark/abc_mid.png"), distance: 452},
-        {id:"C", title:'农业银行拱墅支行', icon: require("../assets/mark/abc_mid.png"), distance: 871},
+        {id:"A", title:'农业银行城东支行', icon: require("../assets/icon/wd_abc_mid.png"), distance: 251},
+        {id:"B", title:'农业银行西湖支行', icon: require("../assets/icon/wd_abc_mid.png"), distance: 452},
+        {id:"C", title:'农业银行拱墅支行', icon: require("../assets/icon/wd_abc_mid.png"), distance: 871},
         {id:"D", title:'招商银行延安路支行', icon: require("../assets/mark/cmb_mid.png"), distance: 678},
       ]
     }
