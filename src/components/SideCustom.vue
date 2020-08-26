@@ -5,6 +5,7 @@
       :dropdown-style="{ maxHeight: '400px', overflow: 'auto' }"
       :tree-data="options"
       placeholder="请选择机构名称"
+      v-model="valueWDBank"
       allowClear
       @change="onBankChange"
     >
@@ -31,7 +32,7 @@
             <a-col :span="12" v-for="item in itemList" :key="item.id">
               <a-checkbox :value="item.id">
                 {{item.name}}
-                <span class="digital">{{item.count1}}</span>
+                <span v-if="valueWDBank =='hubin'" class="digital">{{item.count1}}</span>
               </a-checkbox>
             </a-col>
           </a-row>
@@ -81,7 +82,8 @@
             >&nbsp;&nbsp;
             <span>{{item.name}}</span>
           </td>
-          <td>{{item.count}}</td>
+          <td v-if="valueWDBank =='hubin'">{{item.count}}</td>
+          <td v-else>0</td>
         </tr>
       </table>
     </div>
@@ -125,6 +127,7 @@ export default {
   data() {
     return {
       visible: false,
+      valueWDBank: null,
       options: bankList,
       customStyleList:[
         [
@@ -165,7 +168,8 @@ export default {
     },
     onBankChange(value, label) { // 四个组件都用
       let bankCircleShow2 = value === "hubin" ? true : false;
-      Bus.$emit("circleShow2", bankCircleShow2, this.curKey);
+      console.log( bankCircleShow2, this.valueWDBank)
+      Bus.$emit("circleShow2", bankCircleShow2, this.valueWDBank);
     },
     showModal() {
       this.visible = true;

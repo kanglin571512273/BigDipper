@@ -23,23 +23,30 @@
         <a-radio-button v-for="item in styleList" :key="item.value" :value="item.value" style="width:145px">{{item.label}}</a-radio-button>
       </a-radio-group>
     </div>
-    <div class="digital lndependent">网点35个，自助银行16个。</div>
+    <div v-if="valueWDBank =='hubin'" class="digital lndependent">网点30个，自助银行38个。</div>
+    <!-- <div v-if="valueWDBank =='hubin'" class="digital lndependent">网点41个，自助银行50个。</div> -->
     <div class="radioGroups">
       <a-checkbox-group @change="onWDChange">
         <div class="radioGroup-lint">
           <a-checkbox class="checkbox" v-for="item in wdList" :key="item.id" :value="item.id">
             {{item.label}}
-            <span class="digital" v-if="styleSelect==1">{{item.count1}}</span>
-            <span class="digital" v-else>{{item.count2}}</span>
+            <span v-if="valueWDBank =='hubin'">
+              <span class="digital" v-if="styleSelect==1">{{item.count1}}</span>
+              <span class="digital" v-else>{{item.count2}}</span>
+            </span>
+            <!-- <span v-if="valueWDBank =='yanan'">
+              <span class="digital" v-if="styleSelect==1">{{item.count3}}</span>
+              <span class="digital" v-else>{{item.count4}}</span>
+            </span> -->
           </a-checkbox>
         </div>
       </a-checkbox-group>
     </div>
     <div class="classification">距离：</div>
-    <a-radio-group name="radioGroup" :default-value="2">
+    <a-radio-group name="radioGroup" v-model="circleRange" @change="rangeChange">
       <div class="radioGroup-lint">
-        <a-radio :value="2">1公里</a-radio>
-        <a-radio :value="1">3公里</a-radio>
+        <a-radio :value="1">1公里</a-radio>
+        <a-radio :value="2">3公里</a-radio>
         <a-radio :value="3">
           <input class="inputs" maxlength="2" placeholder="99" />公里
         </a-radio>
@@ -105,7 +112,7 @@
           <a-col :span="12" v-for="item in stList" :key="item.id">
             <a-checkbox :value="item.id">
               {{item.label}}
-              <span class="digital">{{item.count1}}</span>
+              <span class="digital" v-if="valueWDBank =='hubin'">{{item.count1}}</span>
             </a-checkbox>
           </a-col>
         </a-row>
@@ -118,7 +125,7 @@
           <a-col :span="8" v-for="item in bankList" :key="item.id">
             <a-checkbox :value="item.id">
               {{item.label}}
-              <span class="digital">{{item.count1}}</span>
+              <span class="digital" v-if="valueWDBank =='hubin'">{{item.count1}}</span>
             </a-checkbox>
           </a-col>
         </a-row>
@@ -161,15 +168,18 @@ export default {
       options: bankList,
       valueWDBank: null,
       bankCircleShow1: false,
+      circleRange: 1,
       styleSelect: 1,
       styleList:[{value:1,label:'网点'},{value:2,label:'自主银行'}],
+      // wdAllTotal: 30,
+      // zzyhTotal:38,
       wdList:[
-        {id:1, label:'营业中心', count1: 9, count2: 2},
-        {id:2, label:'商圈型', count1: 7, count2: 3},
-        {id:3, label:'社区型', count1: 9, count2: 2},
-        {id:4, label:'乡政型', count1: 2, count2: 1},
-        {id:5, label:'市场型', count1: 5, count2: 2},
-        {id:6, label:'园区型', count1: 6, count2: 5},
+        {id:1, label:'营业中心', count1: 6, count2: 8, count3: 9, count4: 9},
+        {id:2, label:'商圈型', count1: 7, count2: 5, count3: 9, count4: 9},
+        {id:3, label:'社区型', count1: 4, count2: 4, count3: 6, count4: 9},
+        {id:4, label:'乡政型', count1: 2, count2: 5, count3: 3, count4: 6},
+        {id:5, label:'市场型', count1: 5, count2: 7, count3: 6, count4: 8},
+        {id:6, label:'园区型', count1: 6, count2: 9, count3: 8, count4: 9},
       ],
       stList:[
         {id:"A", label:'房产中介', count1: 6, count2: 8},
@@ -210,8 +220,10 @@ export default {
       this.visibles = false;
     },
     onBankChange(value, label) {
+      console.log(this.valueWDBank)
       this.bankCircleShow1 = value === "hubin" ? true : false;
-      Bus.$emit("circleShow1", this.bankCircleShow1, this.curKey);
+      console.log(this.bankCircleShow1, this.valueWDBank)
+      Bus.$emit("circleShow1", this.bankCircleShow1, this.valueWDBank);
     },
     onWDChange(checkValues) {
       // console.log(checkValues)
@@ -222,6 +234,16 @@ export default {
     },
     onBankCheckChange(checkValues) {
       Bus.$emit("checkBankWD", checkValues);
+    },
+    rangeChange() {
+      let radius = null;
+      if(this.circleRange == 1) {
+        radius = 500;
+         Bus.$emit("radiusRange1", radius);
+      } else if (this.circleRange == 2) {
+        radius = 500 * 3;
+         Bus.$emit("radiusRange1", radius);
+      }
     },
     onChange(checkedValues) {
       console.log("checked = ", checkedValues);
