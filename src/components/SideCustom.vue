@@ -32,7 +32,8 @@
             <a-col :span="12" v-for="item in itemList" :key="item.id">
               <a-checkbox :value="item.id">
                 {{item.name}}
-                <span v-if="valueWDBank =='hubin'" class="digital">{{item.count1}}</span>
+                <span v-if="valueWDBank =='yananlu'" class="digital">{{item.count1}}</span>
+                <span v-if="valueWDBank =='hubin'" class="digital">{{item.count2}}</span>
               </a-checkbox>
             </a-col>
           </a-row>
@@ -41,10 +42,10 @@
       </a-checkbox-group>
     </div>
     <div class="classification">距离：</div>
-    <a-radio-group name="radioGroup" :default-value="2">
+    <a-radio-group name="radioGroup"  v-model="circleRange" @change="rangeChange">
       <div class="radioGroup-lint">
-        <a-radio :value="2">1公里</a-radio>
-        <a-radio :value="1">3公里</a-radio>
+        <a-radio :value="1">1公里</a-radio>
+        <a-radio :value="2">3公里</a-radio>
         <a-radio :value="3">
           <input class="inputs" maxlength="2" placeholder="99" />公里
         </a-radio>
@@ -82,7 +83,7 @@
             >&nbsp;&nbsp;
             <span>{{item.name}}</span>
           </td>
-          <td v-if="valueWDBank =='hubin'">{{item.count}}</td>
+          <td v-if="valueWDBank =='yananlu' || valueWDBank =='hubin'">{{item.count}}</td>
           <td v-else>0</td>
         </tr>
       </table>
@@ -128,6 +129,7 @@ export default {
     return {
       visible: false,
       valueWDBank: null,
+      circleRange: 1,
       options: bankList,
       customStyleList:[
         [
@@ -167,9 +169,19 @@ export default {
       console.log("checked = ", checkedValues);
     },
     onBankChange(value, label) { // 四个组件都用
-      let bankCircleShow2 = value === "hubin" ? true : false;
+      let bankCircleShow2 = (this.valueWDBank === "yananlu" || this.valueWDBank === "hubin") ? true : false;
       console.log( bankCircleShow2, this.valueWDBank)
       Bus.$emit("circleShow2", bankCircleShow2, this.valueWDBank);
+    },
+    rangeChange() {
+      let radius = null;
+      if(this.circleRange == 1) {
+        radius = 500;
+         Bus.$emit("radiusRange2", radius);
+      } else if (this.circleRange == 2) {
+        radius = 1500;
+         Bus.$emit("radiusRange2", radius);
+      }
     },
     showModal() {
       this.visible = true;

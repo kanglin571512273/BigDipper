@@ -23,21 +23,21 @@
         <a-radio-button v-for="item in styleList" :key="item.value" :value="item.value" style="width:145px">{{item.label}}</a-radio-button>
       </a-radio-group>
     </div>
-    <div v-if="valueWDBank =='hubin'" class="digital lndependent">网点30个，自助银行38个。</div>
-    <!-- <div v-if="valueWDBank =='hubin'" class="digital lndependent">网点41个，自助银行50个。</div> -->
+    <div v-if="valueWDBank =='hubin'" class="digital lndependent">网点1个，自助银行1个。</div>
+    <div v-if="valueWDBank =='yananlu'" class="digital lndependent">网点30个，自助银行36个。</div>
     <div class="radioGroups">
       <a-checkbox-group @change="onWDChange">
         <div class="radioGroup-lint">
           <a-checkbox class="checkbox" v-for="item in wdList" :key="item.id" :value="item.id">
             {{item.label}}
-            <span v-if="valueWDBank =='hubin'">
+            <span v-if="valueWDBank =='yananlu'">
               <span class="digital" v-if="styleSelect==1">{{item.count1}}</span>
               <span class="digital" v-else>{{item.count2}}</span>
             </span>
-            <!-- <span v-if="valueWDBank =='yanan'">
+            <span v-if="valueWDBank =='hubin'">
               <span class="digital" v-if="styleSelect==1">{{item.count3}}</span>
               <span class="digital" v-else>{{item.count4}}</span>
-            </span> -->
+            </span>
           </a-checkbox>
         </div>
       </a-checkbox-group>
@@ -111,7 +111,11 @@
         <a-row>
           <a-col :span="12" v-for="item in stList" :key="item.id">
             <a-checkbox :value="item.id">
+              <span>
+                <img :src="item.icon" alt="" />
+              </span>
               {{item.label}}
+              <span class="digital" v-if="valueWDBank =='yananlu'">{{item.count2}}</span>
               <span class="digital" v-if="valueWDBank =='hubin'">{{item.count1}}</span>
             </a-checkbox>
           </a-col>
@@ -124,7 +128,11 @@
         <a-row>
           <a-col :span="8" v-for="item in bankList" :key="item.id">
             <a-checkbox :value="item.id">
+              <span>
+                <img :src="item.icon" alt="" />
+              </span>
               {{item.label}}
+              <span class="digital" v-if="valueWDBank =='yananlu'">{{item.count2}}</span>
               <span class="digital" v-if="valueWDBank =='hubin'">{{item.count1}}</span>
             </a-checkbox>
           </a-col>
@@ -174,34 +182,34 @@ export default {
       // wdAllTotal: 30,
       // zzyhTotal:38,
       wdList:[
-        {id:1, label:'营业中心', count1: 6, count2: 8, count3: 9, count4: 9},
-        {id:2, label:'商圈型', count1: 7, count2: 5, count3: 9, count4: 9},
-        {id:3, label:'社区型', count1: 4, count2: 4, count3: 6, count4: 9},
-        {id:4, label:'乡政型', count1: 2, count2: 5, count3: 3, count4: 6},
-        {id:5, label:'市场型', count1: 5, count2: 7, count3: 6, count4: 8},
-        {id:6, label:'园区型', count1: 6, count2: 9, count3: 8, count4: 9},
+        {id:1, label:'营业中心', count1: 6, count2: 6, count3: 1, count4: 1},
+        {id:2, label:'商圈型', count1: 7, count2: 5, count3: 0, count4: 0},
+        {id:3, label:'社区型', count1: 4, count2: 4, count3: 0, count4: 0},
+        {id:4, label:'乡政型', count1: 2, count2: 5, count3: 0, count4: 0},
+        {id:5, label:'市场型', count1: 5, count2: 7, count3: 0, count4: 0},
+        {id:6, label:'园区型', count1: 6, count2: 9, count3: 0, count4: 0},
       ],
       stList:[
-        {id:"A", label:'房产中介', count1: 6, count2: 8},
-        {id:"B", label:'综合体', count1: 4, count2: 8},
-        {id:"C", label:'专业市场', count1: 8, count2: 9},
-        {id:"D", label:'创意园', count1: 12, count2: 15},
-        {id:"E", label:'高档小区', count1: 5, count2: 15},
-        {id:"F", label:'写字楼', count1: 6, count2: 10},
-        {id:"G", label:'汽车租凭', count1: 3, count2: 4},
-        {id:"H", label:'4 S 店', count1: 4, count2: 6},
-        {id:"I", label:'在杭商会', count1: 5, count2: 5},
-        {id:"J", label:'风景区', count1: 12, count2: 13},
-        {id:"K", label:'医院', count1: 4, count2: 6},
-        {id:"L", label:'学校', count1: 3, count2: 6},
+        {id:"A", label:'房产中介', icon: require("../assets/icon/wd_fczj_mid.png"), count1: 4, count2: 6},
+        {id:"B", label:'综合体', icon: require("../assets/icon/wd_zht_mid.png"), count1: 4, count2: 8},
+        {id:"C", label:'专业市场', icon: require("../assets/icon/wd_zysc_mid.png"), count1: 2, count2: 9},
+        {id:"D", label:'创意园', icon: require("../assets/icon/wd_cyy_mid.png"), count1: 0, count2: 15},
+        {id:"E", label:'高档小区', icon: require("../assets/icon/wd_gdxq_mid.png"), count1: 5, count2: 15},
+        {id:"F", label:'写字楼', icon: require("../assets/icon/wd_xzl_mid.png"), count1: 3, count2: 10},
+        {id:"G", label:'汽车租凭', icon: require("../assets/icon/wd_qczl_mid.png"), count1: 3, count2: 4},
+        {id:"H", label:'4 S 店', icon: require("../assets/icon/wd_4s_mid.png"), count1: 4, count2: 6},
+        {id:"I", label:'在杭商会', icon: require("../assets/icon/wd_zhsh_mid.png"), count1: 5, count2: 5},
+        {id:"J", label:'风景区', icon: require("../assets/icon/wd_fjq_mid.png"), count1: 4, count2: 8},
+        {id:"K", label:'医院', icon: require("../assets/icon/wd_yy_mid.png"), count1: 4, count2: 6},
+        {id:"L", label:'学校', icon: require("../assets/icon/wd_xx_mid.png"), count1: 3, count2: 6},
       ],
       bankList:[
-        {id:"A", label:'招行', count1: 2, count2: 8},
-        {id:"B", label:'工行', count1: 3, count2: 8},
-        {id:"C", label:'建行', count1: 2, count2: 9},
-        {id:"D", label:'中行', count1: 1, count2: 15},
-        {id:"E", label:'杭银', count1: 1, count2: 15},
-        {id:"F", label:'其他', count1: 5, count2: 10},
+        {id:"A", label:'招行', icon: require("../assets/icon/wd_cmb_mid.png"), count1: 2, count2: 4},
+        {id:"B", label:'工行', icon: require("../assets/icon/wd_icbc_mid.png"), count1: 3, count2: 8},
+        {id:"C", label:'建行', icon: require("../assets/icon/wd_ccb_mid.png"), count1: 2, count2: 9},
+        {id:"D", label:'中行', icon: require("../assets/icon/wd_boc_mid.png"), count1: 1, count2: 15},
+        {id:"E", label:'杭银', icon: require("../assets/icon/wd_hzyh_mid.png"), count1: 1, count2: 15},
+        {id:"F", label:'其他', icon: require("../assets/icon/wd_qt_mid.png"), count1: 5, count2: 10},
       ],
       bankNameList:[
         {id:"A", title:'农业银行城东支行', icon: require("../assets/icon/wd_abc_mid.png"), distance: 251},
@@ -221,7 +229,7 @@ export default {
     },
     onBankChange(value, label) {
       console.log(this.valueWDBank)
-      this.bankCircleShow1 = value === "hubin" ? true : false;
+      this.bankCircleShow1 = (this.valueWDBank === "hubin" ||this.valueWDBank ===  "yananlu") ? true : false;
       console.log(this.bankCircleShow1, this.valueWDBank)
       Bus.$emit("circleShow1", this.bankCircleShow1, this.valueWDBank);
     },
@@ -241,7 +249,7 @@ export default {
         radius = 500;
          Bus.$emit("radiusRange1", radius);
       } else if (this.circleRange == 2) {
-        radius = 500 * 3;
+        radius = 1500;
          Bus.$emit("radiusRange1", radius);
       }
     },
