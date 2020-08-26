@@ -13,9 +13,17 @@
         slot="title"
         slot-scope="{ key, value }"
         style="color: #08c"
-        >Child Node1 {{ value }}</span
-      >
+      >Child Node1 {{ value }}</span>
     </a-tree-select>
+      <a-modal
+          v-model="visible"
+          width="92%"
+          title="杭州爱迷尚服装公司-企业画像"
+          :footer="null"
+          @ok="handleOk"
+        >
+          <Customerportrait></Customerportrait>
+        </a-modal>
     <a-select
       label-in-value
       placeholder="请选择机构清单"
@@ -36,17 +44,26 @@
         <a-checkbox @change="onChange">全选</a-checkbox>
       </div>
       <div class="wage-box">
-        <div class="wage" @click="changeStatus($event, 1)">代发工资</div>
-        <div class="wage" @click="changeStatus($event, 2)">高管开户</div>
-        <div class="wage" @click="changeStatus($event, 3)">ETC</div>
+        <div
+          class="wage"
+          v-for="item in personlist"
+          :key="item.id"
+          :value="item.id"
+          @click="changeStatus($event, item.id)"
+        >{{item.label}}</div>
       </div>
       <div class="classification">
         客群：
         <a-checkbox @change="onChange">全选</a-checkbox>
       </div>
       <div class="wage-box">
-        <div class="wage" @click="changeStatus($event, 5)">有贷户 25</div>
-        <div class="wage" @click="changeStatus($event, 6)">无贷户 35</div>
+        <div
+          class="wage"
+          v-for="item in personlist1"
+          :key="item.id"
+          :value="item.id"
+          @click="changeStatus($event, item.id)"
+        >{{item.label}} {{item.num}}</div>
       </div>
       <div class="classification">距离：</div>
       <a-radio-group name="radioGroup" :default-value="2">
@@ -62,55 +79,43 @@
         名称：
         <div>
           <a-radio-group name="radioGroup" :default-value="2">
-            <a-radio :value="2">未开通</a-radio>
-            <a-radio :value="1">已开通</a-radio>
+            <a-radio :value="2" @change="cantf">未开通</a-radio>
+            <a-radio :value="1" @change="cantt">已开通</a-radio>
           </a-radio-group>
         </div>
       </div>
-      <div class="agriculture-box">
+      <div
+        class="agriculture-box"
+        v-show="cant==1"
+        v-for="item in companylist"
+        :key="item.id"
+        :value="item.id"
+      >
         <div>
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#iconyikaihu-huang" />
           </svg>
-          <span>浙江锋千亚网络公司</span>
+          <a @click="showModal">{{item.label}}</a>
         </div>
-        <div>100m</div>
+        <div>{{item.num}}m</div>
       </div>
-      <div class="agriculture-box">
+      <div
+        class="agriculture-box"
+        v-show="cant==2"
+        v-for="item in companylist"
+        :key="item.num"
+        :value="item.id"
+      >
         <div>
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#iconyiduijie-zise" />
           </svg>
-          <span>浙江仕佳网络公司</span>
+          <a @click="showModal">{{item.label}}</a>
         </div>
-        <div>200m</div>
+        <div>{{item.num}}m</div>
       </div>
-      <div class="agriculture-box">
-        <div>
-          <svg class="icon" aria-hidden="true">
-            <use xlink:href="#iconyikaihu-huang" />
-          </svg>
-          <span>浙江创峰科技有限公司</span>
-        </div>
-        <div>300m</div>
-      </div>
-      <div class="agriculture-box">
-        <div>
-          <svg class="icon" aria-hidden="true">
-            <use xlink:href="#iconyiduijie-zise" />
-          </svg>
-          <span>浙江迈磊凯家具公司</span>
-        </div>
-        <div>400m</div>
-      </div>
-      <div class="agriculture-box">
-        <div>
-          <svg class="icon" aria-hidden="true">
-            <use xlink:href="#iconyikaihu-huang" />
-          </svg>
-          <span>杭州朗珮科技有限公司</span>
-        </div>
-        <div>500m</div>
+      <div class="paging">
+        <a-pagination v-model="current" :total="50" show-less-items />
       </div>
     </div>
     <div v-show="num == 2">
@@ -120,37 +125,36 @@
         <a-checkbox @change="onChange">全选</a-checkbox>
       </div>
       <div class="wage-box">
-        <div class="wage" @click="changeStatus($event, 3)">ETC</div>
+        <div
+          class="wage"
+          v-for="item in personallist"
+          :key="item.id"
+          :value="item.id"
+          @click="changeStatus($event, item.id)"
+        >{{item.label}}</div>
+        <!-- <div class="wage" @click="changeStatus($event, 3)">ETC</div>
         <div class="wage" @click="changeStatus($event, 2)">管户</div>
         <div class="wage" @click="changeStatus($event, 1)">掌银</div>
-        <div class="wage" @click="changeStatus($event, 4)">对攻扩户</div>
+        <div class="wage" @click="changeStatus($event, 4)">对攻扩户</div>-->
       </div>
-      <div class="wage-box">
+      <!-- <div class="wage-box">
         <div class="wage" @click="changeStatus($event, 5)">管户</div>
         <div class="wage" @click="changeStatus($event, 6)">贷记卡</div>
-      </div>
+      </div>-->
       <div class="classification">
         客群：
         <a-checkbox @change="onChange">全选</a-checkbox>
       </div>
       <div class="wage-box">
-        <div class="wage" @click="changeStatus($event, 7)">VIP 254</div>
-        <div class="wage" @click="changeStatus($event, 8)">贷款户 353</div>
-        <div class="wage" @click="changeStatus($event, 9)">理财 136</div>
+        <div
+          class="wage"
+          v-for="item in personallist1"
+          :key="item.id"
+          :value="item.id"
+          @click="changeStatus($event, item.id)"
+        >{{item.label}} {{item.num}}</div>
       </div>
-      <div class="wage-box">
-        <div class="wage" @click="changeStatus($event, 10)">代发工资 234</div>
-        <div class="wage" @click="changeStatus($event, 11)">企业高管 143</div>
-      </div>
-      <div class="wage-box">
-        <div class="wage" @click="changeStatus($event, 12)">TOP500 89</div>
-        <div class="wage" @click="changeStatus($event, 13)">有车族 8</div>
-        <div class="wage" @click="changeStatus($event, 14)">贷记卡 10</div>
-      </div>
-      <div class="wage-box">
-        <div class="wage" @click="changeStatus($event, 15)">POS商户 45</div>
-        <div class="wage" @click="changeStatus($event, 16)">公积金贷款 4</div>
-      </div>
+
       <div class="classification">距离：</div>
       <a-radio-group name="radioGroup" :default-value="2">
         <div class="radioGroup-lint">
@@ -163,7 +167,7 @@
       </a-radio-group>
       <div class="classification">
         范围内客户清单：
-        <div>651户</div>
+        <div>21户</div>
       </div>
       <div>
         <table class="gridtable">
@@ -172,25 +176,10 @@
             <th>客户姓名</th>
             <th>客户经理</th>
           </tr>
-          <tr>
+          <tr v-for="item in customer" :key="item.id" :value="item.id">
             <td></td>
-            <td>旷筠振</td>
-            <td>阿妍梅</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>孟佳</td>
-            <td>保伊先</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>操思辰</td>
-            <td>百梅</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>丘勇群</td>
-            <td>洛春娥</td>
+            <td>{{item.name}}</td>
+            <td>{{item.name2}}</td>
           </tr>
         </table>
       </div>
@@ -211,66 +200,48 @@
         名称：
         <div style="display:flex">
           <a-radio-group name="radioGroup" :default-value="2">
-            <a-radio :value="2">A级</a-radio>
-            <a-radio :value="9">B级</a-radio>
+            <a-radio :value="2" @change="cantf">A级</a-radio>
+            <a-radio :value="9" @change="cantt">B级</a-radio>
           </a-radio-group>
-          <div>109户</div>
+          <div>19户</div>
         </div>
       </div>
-      <div class="agriculture-box">
-        <div>
-          <svg class="icon" aria-hidden="true">
-            <use xlink:href="#iconyiduijie-zise" />
-          </svg>
-
-          <span>浙江锋千亚网络公司</span>
-        </div>
-        <div>100m</div>
-      </div>
-      <div class="agriculture-box">
+      <div
+        class="agriculture-box"
+        v-show="cant==1"
+        v-for="item in companylist"
+        :key="item.id"
+        :value="item.id"
+      >
         <div>
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#iconyikaihu-huang" />
           </svg>
-          <span>浙江仕佳网络公司</span>
+          <a @click="showModal">{{item.label}}</a>
         </div>
-        <div>200m</div>
+        <div>{{item.num}}m</div>
       </div>
-      <div class="agriculture-box">
+      <div
+        class="agriculture-box"
+        v-show="cant==2"
+        v-for="item in companylist"
+        :key="item.num"
+        :value="item.id"
+      >
         <div>
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#iconyiduijie-zise" />
           </svg>
-          <span>浙江创峰科技有限公司</span>
+          <a @click="showModal">{{item.label}}</a>
         </div>
-        <div>300m</div>
+        <div>{{item.num}}m</div>
       </div>
-      <div class="agriculture-box">
-        <div>
-          <svg class="icon" aria-hidden="true">
-            <use xlink:href="#iconyikaihu-huang" />
-          </svg>
-          <span>浙江迈磊凯家具公司</span>
-        </div>
-        <div>400m</div>
-      </div>
-      <div class="agriculture-box">
-        <div>
-          <svg class="icon" aria-hidden="true">
-            <use xlink:href="#iconyiduijie-zise" />
-          </svg>
-          <span>杭州朗珮科技有限公司</span>
-        </div>
-        <div>500m</div>
+       <div class="paging">
+        <a-pagination v-model="current" :total="50" show-less-items />
       </div>
     </div>
     <div v-show="num == 4">
-      <a-select
-        label-in-value
-        placeholder="请选择企业再招人数"
-        style="width: 300px"
-        @change="handleChange"
-      >
+      <a-select label-in-value placeholder="请选择企业再招人数" style="width: 300px" @change="handleChange">
         <a-select-option value="jack">0～10人</a-select-option>
         <a-select-option value="lucy">10～30人</a-select-option>
         <a-select-option value="recruitment">30～50人</a-select-option>
@@ -281,9 +252,13 @@
         <a-checkbox @change="onChange">全选</a-checkbox>
       </div>
       <div class="wage-box">
-        <div class="wage" @click="changeStatus($event, 21)">代发工资</div>
-        <div class="wage" @click="changeStatus($event, 22)">高管开户</div>
-        <div class="wage" @click="changeStatus($event, 20)">ETC</div>
+        <div
+          class="wage"
+          v-for="item in personlist"
+          :key="item.id"
+          :value="item.id"
+          @click="changeStatus($event, item.id)"
+        >{{item.label}}</div>
       </div>
       <div class="classification">距离：</div>
       <a-radio-group name="radioGroup" :default-value="2">
@@ -295,51 +270,18 @@
           </a-radio>
         </div>
         <div class="classification">名称：</div>
-        <div class="agriculture-box">
-          <div>
-            <svg class="icon" aria-hidden="true">
-              <use xlink:href="#iconyiduijie-zise" />
-            </svg>
-            <span>浙江锋千亚网络公司</span>
-          </div>
-          <div>100m</div>
-        </div>
-        <div class="agriculture-box">
+        <div class="agriculture-box" v-for="item in companylist" :key="item.id" :value="item.id">
           <div>
             <svg class="icon" aria-hidden="true">
               <use xlink:href="#iconyikaihu-huang" />
             </svg>
-            <span>浙江仕佳网络公司</span>
+            <a @click="showModal">{{item.label}}</a>
           </div>
-          <div>200m</div>
+          <div>{{item.num}}m</div>
         </div>
-        <div class="agriculture-box">
-          <div>
-            <svg class="icon" aria-hidden="true">
-              <use xlink:href="#iconyiduijie-zise" />
-            </svg>
-            <span>浙江创峰科技有限公司</span>
-          </div>
-          <div>300m</div>
-        </div>
-        <div class="agriculture-box">
-          <div>
-            <svg class="icon" aria-hidden="true">
-              <use xlink:href="#iconyiduijie-zise" />
-            </svg>
-            <span>浙江迈磊凯家具公司</span>
-          </div>
-          <div>400m</div>
-        </div>
-        <div class="agriculture-box">
-          <div>
-            <svg class="icon" aria-hidden="true">
-              <use xlink:href="#iconyikaihu-huang" />
-            </svg>
-            <span>杭州朗珮科技有限公司</span>
-          </div>
-          <div>500m</div>
-        </div>
+         <div class="paging">
+        <a-pagination v-model="current" :total="50" show-less-items />
+      </div>
       </a-radio-group>
     </div>
     <div v-show="num == 5">
@@ -357,69 +299,18 @@
           范围内客户清单：
           <div>109户</div>
         </div>
-        <div class="agriculture-box">
+        <div class="agriculture-box" v-for="item in apartment" :key="item.id" :value="item.id">
           <div>
             <svg class="icon" aria-hidden="true">
               <use xlink:href="#iconyikaihu-huang" />
             </svg>
-            <span>名称公寓</span>
+            <span>{{item.label}}</span>
           </div>
-          <div>100m</div>
+          <div>{{item.num}}m</div>
         </div>
-        <div class="agriculture-box">
-          <div>
-            <svg class="icon" aria-hidden="true">
-              <use xlink:href="#iconyikaihu-huang" />
-            </svg>
-            <span>延安路</span>
-          </div>
-          <div>200m</div>
-        </div>
-        <div class="agriculture-box">
-          <div>
-            <svg class="icon" aria-hidden="true">
-              <use xlink:href="#iconyiduijie-zise" />
-            </svg>
-            <span>平海公寓</span>
-          </div>
-          <div>300m</div>
-        </div>
-        <div class="agriculture-box">
-          <div>
-            <svg class="icon" aria-hidden="true">
-              <use xlink:href="#iconyiduijie-zise" />
-            </svg>
-            <span>中山山路</span>
-          </div>
-          <div>400m</div>
-        </div>
-        <div class="agriculture-box">
-          <div>
-            <svg class="icon" aria-hidden="true">
-              <use xlink:href="#iconyikaihu-huang" />
-            </svg>
-            <span>延安路</span>
-          </div>
-          <div>500m</div>
-        </div>
-        <div class="agriculture-box">
-          <div>
-            <svg class="icon" aria-hidden="true">
-              <use xlink:href="#iconyiduijie-zise" />
-            </svg>
-            <span>平海公寓</span>
-          </div>
-          <div>500m</div>
-        </div>
-        <div class="agriculture-box">
-          <div>
-            <svg class="icon" aria-hidden="true">
-              <use xlink:href="#iconyikaihu-huang" />
-            </svg>
-            <span>未央村</span>
-          </div>
-          <div>500m</div>
-        </div>
+         <div class="paging">
+        <a-pagination v-model="current" :total="50" show-less-items />
+      </div>
       </a-radio-group>
     </div>
   </div>
@@ -427,9 +318,23 @@
 
 <script>
 import Vue from "vue";
-import Bus from "../api/bus"
-import bankList from "../api/bankList"
-import {Tabs,Select,Radio,Checkbox,Col,Row,Button,Input,Modal,Cascader,TreeSelect} from "ant-design-vue";
+import Bus from "../api/bus";
+import bankList from "../api/bankList";
+import Customerportrait from "@/components/Customerportrait.vue";
+import {
+  Tabs,
+  Select,
+  Radio,
+  Checkbox,
+  Col,
+  Row,
+  Button,
+  Input,
+  Modal,
+  Cascader,
+  TreeSelect,
+  Pagination,
+} from "ant-design-vue";
 Vue.use(Tabs);
 Vue.use(Select);
 Vue.use(Radio);
@@ -441,19 +346,78 @@ Vue.use(Input);
 Vue.use(Modal);
 Vue.use(Cascader);
 Vue.use(TreeSelect);
+Vue.use(Pagination);
 export default {
-  data(){
+    components: {
+    Customerportrait,
+  },
+  data() {
     return {
       num: 0,
+      cant: 2,
+      current: 1,
       disRadioShow3: false,
+      visible: false,
       options: bankList,
-    }
+      personlist: [
+        { id: 1, label: "代发工资" },
+        { id: 2, label: "高管开户" },
+        { id: 3, label: "ETC" },
+      ],
+      personallist: [
+        { id: 1, label: "ETC" },
+        { id: 2, label: "管户" },
+        { id: 3, label: "掌银" },
+        { id: 4, label: "对攻扩户" },
+        { id: 5, label: "贷记卡" },
+      ],
+      personlist1: [
+        { id: 5, label: "有贷户", num: 25 },
+        { id: 6, label: "无贷户", num: 35 },
+      ],
+      companylist: [
+        { id: 23, label: "浙江锋千亚网络公司", num: 100 },
+        { id: 24, label: "浙江仕佳网络公司", num: 120 },
+        { id: 25, label: "浙江创峰科技有限公司", num: 150 },
+        { id: 26, label: "浙江迈磊凯家具公司", num: 190 },
+        { id: 5, label: "杭州朗珮科技有限公司", num: 250 },
+      ],
+      apartment: [
+        { id: 1, label: "名称公寓", num: 100 },
+        { id: 2, label: "延安路", num: 120 },
+        { id: 3, label: "平海公寓", num: 150 },
+        { id: 4, label: "中山山路", num: 190 },
+        { id: 5, label: "延安路", num: 350 },
+        { id: 6, label: "平海公寓", num: 450 },
+        { id: 7, label: "未央村", num: 650 },
+      ],
+      personallist1: [
+        { id: 6, label: "VIP", num: 23 },
+        { id: 7, label: "贷款户", num: 27 },
+        { id: 8, label: "掌银", num: 43 },
+        { id: 9, label: "理财", num: 54 },
+        { id: 10, label: "代发工资", num: 33 },
+        { id: 11, label: "企业高管", num: 53 },
+        { id: 12, label: "TOP500", num: 57 },
+        { id: 13, label: "有车族", num: 7 },
+        { id: 14, label: "贷记卡", num: 37 },
+        { id: 15, label: "POS商户", num: 27 },
+        { id: 16, label: "公积金贷款", num: 87 },
+      ],
+      customer: [
+        { id: 1, name: "旷筠振", name2: "阿妍梅" },
+        { id: 2, name: "孟佳", name2: "保伊先" },
+        { id: 3, name: "操思辰", name2: "百梅" },
+        { id: 4, name: "丘勇群", name2: "洛春娥" },
+      ],
+    };
   },
   methods: {
     onChange(checkedValues) {
       console.log("checked = ", checkedValues);
     },
-    onBankChange(value, label) { // 四个组件都用
+    onBankChange(value, label) {
+      // 四个组件都用
       let bankCircleShow3 = value === "hubin" ? true : false;
       Bus.$emit("circleShow3", bankCircleShow3, this.curKey);
     },
@@ -491,10 +455,25 @@ export default {
         e.target.className = "wage"; //未选中div样式
       }
     },
-  }
+    cantf() {
+      console.log(12321);
+      this.cant = 2;
+    },
+    cantt() {
+      this.cant = 1;
+    },
+     showModal() {
+       console.log(2222)
+      this.visible = true;
+    },
+      handleOk(e) {
+      this.visible = false;
+    },
+  },
 };
 </script>
+<style lang="stylus" scoped>
+@import '../assets/css/common.styl';
 
-<style lang="stylus">
-@import '../assets/css/common.styl'
+
 </style>

@@ -25,9 +25,9 @@
               :footer="null"
               @ok="handleOk"
             >
-             <div class="Summary-table">
-            <a-table :columns="columns5" :data-source="data5" :pagination="false"></a-table>
-          </div>
+              <div class="Summary-table">
+                <a-table :columns="columns5" :data-source="data5" :pagination="false"></a-table>
+              </div>
             </a-modal>
             <div class="Summary">
               <div>汇总类型：</div>
@@ -183,7 +183,7 @@ const data1 = [
   },
   {
     key: 2,
-    code: "杭州迈瑞科技有限公司",
+    code: "延安路支行",
     registered: "李佳佳",
     time: "1988/02/26",
     marketing: "开户",
@@ -246,7 +246,7 @@ const data2 = [
   },
   {
     key: 2,
-    name: "中间业务",
+    name: "担保类中间业务",
     code: "0",
     time: "0",
     registered: "10",
@@ -257,7 +257,7 @@ const data2 = [
   },
   {
     key: 3,
-    name: "资产业务",
+    name: "银票承兑",
     code: "0",
     time: "3",
     registered: "0",
@@ -279,7 +279,7 @@ const data2 = [
   },
   {
     key: 5,
-    name: "资产业务",
+    name: "企业经营性贷款",
     code: "0",
     time: "4",
     registered: "0",

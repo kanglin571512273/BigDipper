@@ -13,8 +13,7 @@
         slot="title"
         slot-scope="{ key, value }"
         style="color: #08c"
-        >Child Node1 {{ value }}</span
-      >
+      >Child Node1 {{ value }}</span>
     </a-tree-select>
     <div class="classification">
       分类：
@@ -23,34 +22,17 @@
     <div>
       <a-checkbox-group @change="onSQFLChange">
         <a-row>
-          <a-col :span="12">
-            <a-checkbox value="E">
-              创意园
-              <span class="digital">2</span>
-            </a-checkbox>
-          </a-col>
-          <a-col :span="12">
-            <a-checkbox value="F">
-              综合体
-              <span class="digital">54</span>
-            </a-checkbox>
-          </a-col>
-          <a-col :span="12">
-            <a-checkbox value="G">
-              专业市场
-              <span class="digital">67</span>
-            </a-checkbox>
-          </a-col>
-          <a-col :span="12">
-            <a-checkbox value="H">
-              写字楼
-              <span class="digital">34</span>
-            </a-checkbox>
-          </a-col>
-          <a-col :span="12">
-            <a-checkbox value="I">
-              小微园区
-              <span class="digital">2</span>
+          <a-col :span="12" v-for="item in districtlist" :key="item.id">
+            <a-checkbox :value="item.id">
+              <span>
+                <img :src="item.icon" alt />
+              </span>
+              {{item.label}}
+              <span
+                class="digital"
+                v-if="valueWDBank =='yananlu'"
+              >{{item.count2}}</span>
+              <span class="digital" v-if="valueWDBank =='hubin'">{{item.count1}}</span>
             </a-checkbox>
           </a-col>
         </a-row>
@@ -66,77 +48,35 @@
         </a-radio>
       </div>
     </a-radio-group>
-    <a-tree-select
-      style="width: 300px;margin-bottom:10px"
-      :dropdown-style="{ maxHeight: '400px', overflow: 'auto' }"
-      placeholder="请选择商圈"
-      allowClear
-    >
-      <!-- <span
-            v-if="key === '0-0-1'"
-            slot="title"
-            slot-scope="{ key, value }"
-            style="color: #08c"
-          >Child Node1 {{ value }}</span>-->
-    </a-tree-select>
+    <a-select placeholder="请选择商圈" style="width: 300px;margin-bottom:10px">
+      <a-select-option v-for="province in provinceData" :key="province">{{ province }}</a-select-option>
+    </a-select>
     <a-input placeholder="请输入客户名称" style="width: 300px;" />
     <div class="classification">
       营销分类：
       <a-checkbox @change="onChange">全选</a-checkbox>
     </div>
     <div class="wage-box">
-      <div class="wage" @click="changeStatus($event, 1)">开户 5</div>
-      <div class="wage" @click="changeStatus($event, 2)">待选 1</div>
-      <div class="wage" @click="changeStatus($event, 3)">目标 5</div>
+      <div
+        class="wage"
+        v-for="item in personlist"
+        :key="item.id"
+        :value="item.id"
+        @click="changeStatus($event, item.id)"
+      >{{item.label}} {{item.num}}</div>
     </div>
     <div class="classification">
       名称：
-      <div>109户</div>
+      <div>9户</div>
     </div>
-    <div class="agriculture-box">
+    <div class="agriculture-box" v-for="item in companylist" :key="item.id" :value="item.id">
       <div>
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#iconyikaihu-huang" />
         </svg>
-        <span>浙江锋千亚网络公司</span>
+        <span>{{item.label}}</span>
       </div>
-      <div>100m</div>
-    </div>
-    <div class="agriculture-box">
-      <div>
-        <svg class="icon" aria-hidden="true">
-          <use xlink:href="#iconyiduijie-zise" />
-        </svg>
-        <span>浙江仕佳网络公司</span>
-      </div>
-      <div>200m</div>
-    </div>
-    <div class="agriculture-box">
-      <div>
-        <svg class="icon" aria-hidden="true">
-          <use xlink:href="#iconyikaihu-huang" />
-        </svg>
-        <span>浙江创峰科技有限公司</span>
-      </div>
-      <div>300m</div>
-    </div>
-    <div class="agriculture-box">
-      <div>
-        <svg class="icon" aria-hidden="true">
-          <use xlink:href="#iconyiduijie-zise" />
-        </svg>
-        <span>浙江迈磊凯家具公司</span>
-      </div>
-      <div>400m</div>
-    </div>
-    <div class="agriculture-box">
-      <div>
-        <svg class="icon" aria-hidden="true">
-          <use xlink:href="#iconyikaihu-huang" />
-        </svg>
-        <span>杭州朗珮科技有限公司</span>
-      </div>
-      <div>500m</div>
+      <div>{{item.num}}m</div>
     </div>
   </div>
 </template>
@@ -156,7 +96,7 @@ import {
   Input,
   Modal,
   Cascader,
-  TreeSelect
+  TreeSelect,
 } from "ant-design-vue";
 Vue.use(Tabs);
 Vue.use(Select);
@@ -172,14 +112,65 @@ Vue.use(TreeSelect);
 export default {
   data() {
     return {
-      options: bankList
+      options: bankList,
+      districtlist: [
+        {
+          id: "A",
+          label: "小微园区",
+          icon: require("../assets/icon/wd_xwyq_mid.png"),
+          count1: 4,
+          count2: 6,
+        },
+        {
+          id: "B",
+          label: "综合体",
+          icon: require("../assets/icon/wd_zht_mid.png"),
+          count1: 4,
+          count2: 8,
+        },
+        {
+          id: "C",
+          label: "专业市场",
+          icon: require("../assets/icon/wd_zysc_mid.png"),
+          count1: 2,
+          count2: 9,
+        },
+        {
+          id: "D",
+          label: "创意园",
+          icon: require("../assets/icon/wd_cyy_mid.png"),
+          count1: 0,
+          count2: 15,
+        },
+        {
+          id: "F",
+          label: "写字楼",
+          icon: require("../assets/icon/wd_xzl_mid.png"),
+          count1: 3,
+          count2: 10,
+        },
+      ],
+      companylist: [
+        { id: 1, label: "浙江锋千亚网络公司", num: 100 },
+        { id: 2, label: "浙江仕佳网络公司", num: 120 },
+        { id: 3, label: "浙江创峰科技有限公司", num: 150 },
+        { id: 4, label: "浙江迈磊凯家具公司", num: 190 },
+        { id: 5, label: "杭州朗珮科技有限公司", num: 250 },
+      ],
+      provinceData: ["杭州大厦", "元茂大厦", "西溪金座", "IT公园"],
+      personlist: [
+        { id: 64, label: "开户", num: 5 },
+        { id: 65, label: "待选", num: 2 },
+        { id: 66, label: "目标", num: 7 },
+      ],
     };
   },
   methods: {
     onChange(checkedValues) {
       console.log("checked = ", checkedValues);
     },
-    onBankChange(value, label) { // 四个组件都用
+    onBankChange(value, label) {
+      // 四个组件都用
       let bankCircleShow4 = value === "hubin" ? true : false;
       Bus.$emit("circleShow4", bankCircleShow4, this.curKey);
     },
@@ -187,10 +178,17 @@ export default {
       // console.log(checkValues)
       Bus.$emit("checkSQFL", checkValues);
     },
-  }
+    changeStatus(e, number) {
+      if (e.target.className.indexOf("wages") == -1) {
+        e.target.className = "wage wages"; //选中div样式
+      } else {
+        e.target.className = "wage"; //未选中div样式
+      }
+    },
+  },
 };
 </script>
 
 <style lang="stylus">
-@import '../assets/css/common.styl'
+@import '../assets/css/common.styl';
 </style>

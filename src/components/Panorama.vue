@@ -42,7 +42,7 @@
               :pagination="false"
               :scroll="{ y: 235 }"
             >
-              <a slot="action" href="javascript:;">查看</a>
+              <a slot="action" @click="showModal">查看</a>
               <p slot-scope="record" style="margin: 0">{{ record.description }}</p>
             </a-table>
           </div>
@@ -55,7 +55,7 @@
               :pagination="false"
               :scroll="{ y: 235 }"
             >
-              <a slot="action" href="javascript:;">查看</a>
+              <a slot="action" @click="showModal">查看</a>
               <p slot-scope="record" style="margin: 0">{{ record.description }}</p>
             </a-table>
           </div>
@@ -68,7 +68,7 @@
               :pagination="false"
               :scroll="{ y: 235 }"
             >
-              <a slot="action" href="javascript:;">查看</a>
+              <a slot="action" @click="showModal">查看</a>
               <p slot-scope="record" style="margin: 0">{{ record.description }}</p>
             </a-table>
           </div>
@@ -81,7 +81,7 @@
               :pagination="false"
               :scroll="{ y: 235 }"
             >
-              <a slot="action" href="javascript:;">查看</a>
+              <a slot="action" @click="showModal">查看</a>
               <p slot-scope="record" style="margin: 0">{{ record.description }}</p>
             </a-table>
           </div>
@@ -94,7 +94,7 @@
               :pagination="false"
               :scroll="{ y: 235 }"
             >
-              <a slot="action" href="javascript:;">查看</a>
+              <a slot="action" @click="showModal">查看</a>
               <p slot-scope="record" style="margin: 0">{{ record.description }}</p>
             </a-table>
           </div>
@@ -107,8 +107,8 @@
               :pagination="false"
               :scroll="{ y: 235 }"
             >
-              <a slot="action" href="javascript:;">查看</a>
-              <a slot="action" href="javascript:;">&ensp;&ensp;添加</a>
+              <a slot="action" @click="showModal">查看</a>
+              <span slot="action">&ensp;&ensp;已添加</span>
               <p slot-scope="record" style="margin: 0">{{ record.description }}</p>
             </a-table>
           </div>
@@ -121,7 +121,7 @@
               :pagination="false"
               :scroll="{ y: 235 }"
             >
-              <a slot="action" href="javascript:;">查看</a>
+              <a slot="action" @click="showModal">查看</a>
               <a slot="action" href="javascript:;">&ensp;&ensp;添加</a>
               <p slot-scope="record" style="margin: 0">{{ record.description }}</p>
             </a-table>
