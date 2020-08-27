@@ -15,11 +15,11 @@
         <bm-marker
           v-if="bankCircleShow1"
           :position="circleCenter1"
-          title="湖滨支行"
           @click="infoWindowOpen"
+          :title="bankName"
         >
           <bm-info-window :show="show" @close="infoWindowClose" @open="infoWindowOpen">
-            <MapInfo></MapInfo>
+            <MapInfo :title="bankName"></MapInfo>
           </bm-info-window>
         </bm-marker>
         <bm-circle
@@ -42,6 +42,7 @@
             :position="item"
             :icon="{ url: yyIcon, size: { width: 24, height: 24 } }"
             title="营业中心"
+            :offset="{ width: 0, height: -12 }"
             @click="markerClick"
           ></bm-marker>
         </div>
@@ -70,11 +71,11 @@
         <bm-marker
           v-if="bankCircleShow2"
           :position="circleCenter2"
-          title="湖滨支行"
+          :title="bankName"
           @click="infoWindowOpen"
         >
           <bm-info-window :show="show" @close="infoWindowClose" @open="infoWindowOpen">
-            <MapInfo></MapInfo>
+            <MapInfo :title="bankName"></MapInfo>
           </bm-info-window>
         </bm-marker>
         <bm-circle
@@ -94,11 +95,11 @@
         <bm-marker
           v-if="bankCircleShow3"
           :position="circleCenter3"
-          title="湖滨支行"
+          :title="bankName"
           @click="infoWindowOpen"
         >
           <bm-info-window :show="show" @close="infoWindowClose" @open="infoWindowOpen">
-            <MapInfo></MapInfo>
+            <MapInfo :title="bankName"></MapInfo>
           </bm-info-window>
         </bm-marker>
         <bm-circle
@@ -118,11 +119,11 @@
         <bm-marker
           v-if="bankCircleShow4"
           :position="circleCenter4"
-          title="湖滨支行"
+          :title="bankName"
           @click="infoWindowOpen"
         >
           <bm-info-window :show="show" @close="infoWindowClose" @open="infoWindowOpen">
-            <MapInfo></MapInfo>
+            <MapInfo :title="bankName"></MapInfo>
           </bm-info-window>
         </bm-marker>
         <bm-circle
@@ -168,6 +169,7 @@ export default {
       bussinessCenterShow: false,
       stShow: false,
       bankWDShow: false,
+      bankName: '',
       bankCircleShow2: false,
       bankCircleShow3: false,
       bankCircleShow4: false,
@@ -210,7 +212,7 @@ export default {
         { lng: 120.175199, lat: 30.255354 },
       ],
       businessCenter2: [ // 杭州延庆支行营业中心
-        { lng: 120.175319, lat: 30.269958 },
+        { lng: 120.173198,lat: 30.257352 },
       ],
       houseCenter1: [// 延安路支行房产中介
         { lng: 120.169602, lat: 30.273619 },
@@ -220,7 +222,7 @@ export default {
         { lng: 120.169656, lat: 30.272465 },
         { lng: 120.167446, lat: 30.27209 },
         { lng: 120.169404, lat: 30.271529 },
-        { lng: 1120.168865, lat: 30.273073 },
+        { lng: 120.168865, lat: 30.273073 },
       ],
       houseCenter2: [// 杭州延庆支行房产中介
         { lng: 120.174995, lat: 30.260004 },
@@ -238,11 +240,13 @@ export default {
       ],
       bankList2: [// 杭州延庆支行银行网点
         { lng: 120.174815, lat: 30.25736 },
-        { lng: 120.173665, lat: 30.258436 },
+        { lng: 120.171665, lat: 30.258436 },
       ],
       cyyList1: [// 延安路支行创意园
-        { lng: 120.174187, lat: 30.259574 },
-        { lng: 120.171187, lat: 30.260502 },
+        { lng: 120.168236, lat: 30.273525 },
+        { lng: 120.169404, lat: 30.271529 },
+        { lng: 120.170806, lat: 30.273322 },
+        { lng: 120.169978, lat: 30.274632 },
       ],
       cyyList2: [// 杭州延庆支行创意园
         { lng: 120.174187, lat: 30.259574 },
@@ -311,11 +315,13 @@ export default {
         this.businessCenter = this.businessCenter2;
         this.houseCenter = this.houseCenter2;
         this.bankList = this.bankList2;
+        this.bankName = '杭州延庆支行'
       } else if(value == "yananlu") {
         this.circleCenter1 = this.circlePath1;
         this.businessCenter = this.businessCenter1;
         this.houseCenter = this.houseCenter1;
         this.bankList = this.bankList1;
+        this.bankName = '延安路支行'
       }
     });
     Bus.$on("radiusRange1", (radius) => {
@@ -334,10 +340,12 @@ export default {
     });
     Bus.$on("circleShow2", (show, value) => {
       this.bankCircleShow2 = show;
+      this.bankName = '杭州延庆支行'
       if(value == "hubin") {
         this.circleCenter2 = this.circlePath2;
       } else if(value == "yananlu") {
         this.circleCenter2 = this.circlePath1;
+        this.bankName = '延安路支行'
       }
     });
     Bus.$on("radiusRange2", (radius) => {
@@ -348,8 +356,10 @@ export default {
       this.bankCircleShow3 = show;
       if(value == "hubin") {
         this.circleCenter3 = this.circlePath2;
+        this.bankName = '杭州延庆支行'
       } else if(value == "yananlu") {
         this.circleCenter3 = this.circlePath1;
+        this.bankName = '延安路支行'
       }
     });
     Bus.$on("disRadio", (value) => {
@@ -364,9 +374,11 @@ export default {
       if(value == "hubin") {
         this.circleCenter4 = this.circlePath2;
         this.cyyList = this.cyyList2;
+        this.bankName = '杭州延庆支行'
       } else if(value == "yananlu") {
         this.circleCenter4 = this.circlePath1;
         this.cyyList = this.cyyList1;
+        this.bankName = '延安路支行'
       }
     });
     Bus.$on("checkSQFL", (value) => {

@@ -1,7 +1,7 @@
 <template>
   <div class="infoWrapper">
     <div class="head">
-      <p class="title">湖滨支行</p>
+      <p class="title">{{title}}</p>
       <div>
         <a-button-group size="small">
           <a-button type="primary">首页</a-button>
@@ -33,6 +33,7 @@
 <script>
 export default {
   name: "infoMapWindow",
+  props: ['title'],
   data() {
     return {
       linkList: [
