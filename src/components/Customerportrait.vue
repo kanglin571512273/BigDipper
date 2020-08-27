@@ -447,12 +447,12 @@
         </a-collapse-panel>
         <a-collapse-panel key="2" header="荣誉资质">
           <div class="Summary-table">
-            <a-table :columns="columns1" :data-source="data1" :pagination="false"></a-table>
+            <a-table :columns="columns2" :data-source="data2" :pagination="false"></a-table>
           </div>
         </a-collapse-panel>
         <a-collapse-panel key="3" header="企业信⽤">
           <div class="Summary-table">
-            <a-table :columns="columns1" :data-source="data1" :pagination="false"></a-table>
+            <a-table :columns="columns3" :data-source="data3" :pagination="false"></a-table>
           </div>
         </a-collapse-panel>
       </a-collapse>
@@ -481,33 +481,105 @@ import Vue from "vue";
 import { Collapse } from "ant-design-vue";
 Vue.use(Collapse);
 const columns1 = [
-  { title: "轮次", dataIndex: "name", key: "name", width: 240 },
-  { title: "投资金融", dataIndex: "code", key: "code", width: 240 },
-  { title: "主要投资方", dataIndex: "registered", key: "registered" },
+  { title: "轮次", dataIndex: "name", key: "name", },
   { title: "时间", dataIndex: "time", key: "time" },
+  { title: "项目", dataIndex: "project", key: "project" },
+  { title: "融资金额", dataIndex: "money", key: "money" },
+  { title: " 融资方式", dataIndex: "mode", key: "mode" },
+  { title: " 投资方", dataIndex: "investor", key: "investor" },
+  { title: " 新闻来源", dataIndex: "sources", key: "sources" },
 ];
 const data1 = [
   {
     key: 1,
-    name: "天使轮",
-    code: "200000万元",
-    registered: "今日资本",
-    time: "1988/02/26",
+    name: "Pre-A轮",
+    time: "2017-11-28",
+    project: "新能源",
+    money: "500万",
+    mode: "股权融资",
+    investor: "乐融资本",
+    sources: "IT桔子",
   },
   {
     key: 2,
-    name: "A",
-    code: "30000万元",
-    registered: "今日资本、红杉资本",
-    time: "1979/05/11",
+    name: "天使轮",
+    time: "2016-12-09",
+    project: "新能源",
+    money: "未披露",
+    mode: "股权融资",
+    investor: "高特电子",
+    sources: "IT桔子",
   },
   {
     key: 3,
-    name: "B",
-    code: "1000万元 ",
-    registered: "IDG资本、红杉资本",
-    time: "2003/01/01",
+    name: "种子轮",
+    time: "2017-09-08",
+    project: "新能源",
+    money: "未披露",
+    mode: "股权融资",
+    investor: "传动电喷",
+    sources: "IT桔子",
   },
+];
+const columns2 = [
+  { title: "时间", dataIndex: "time", key: "time" },
+  { title: "荣誉", dataIndex: "name", key: "name", },
+  { title: "荣誉级别", dataIndex: "project", key: "project" },
+  { title: "颁布单位 ", dataIndex: "money", key: "money" },
+  { title: " 新闻来源", dataIndex: "sources", key: "sources" },
+];
+const data2 = [
+  {
+    key: 1,
+    time: "2015-08-20",
+    name: "杭州市领军型创新创业团队",
+    project: " 地方政府",
+    money: "杭州市科学技术委员会",
+    sources: "浙江政务服务网",
+  },
+  {
+    key: 2,
+    time: "2015-05-06",
+    name: "杭州市“雏鹰计划”企业 ",
+    project: " 地方政府",
+    money: "杭州市科学技术委员会",
+    sources: "浙江政务服务网",
+  },
+];
+const columns3 = [
+  { title: "年度", dataIndex: "time", key: "time" },
+  { title: "企业评级", dataIndex: "name", key: "name", },
+  { title: "信用评分", dataIndex: "project", key: "project" },
+  { title: "评分来源", dataIndex: "money", key: "money" },
+  { title: " 净利润", dataIndex: "mode", key: "mode" },
+  { title: " 资产负债率", dataIndex: "investor", key: "investor" },
+  { title: " 贷款逾期 ", dataIndex: "sources", key: "sources" },
+  { title: " 行政处罚 ", dataIndex: "sanction", key: "sanction" },
+];
+const data3 = [
+  {
+    key: 1,
+    time: "2019年",
+    name: "四星",
+    project: 880,
+    money: "银行内部",
+    mode: "2000万",
+    investor: "56%",
+    sources: " 2次",
+    sanction:"0次 "
+  },
+  {
+    key: 2,
+    time: "2018年",
+    name: "四星",
+    project: 800,
+    money: "银行内部",
+    mode: "1200万",
+    investor: "70%",
+    sources: " 0次",
+    sanction:"0次 "
+  },
+ 
 ];
 const columns = [
   { title: "文书标题", dataIndex: "name", key: "name", width: 300 },
@@ -570,6 +642,10 @@ export default {
       columns,
       data1,
       columns1,
+      data2,
+      columns2,
+      data3,
+      columns3,
       ys1: true,
       ys2: false,
       investment: true,

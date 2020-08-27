@@ -79,6 +79,9 @@
       </div>
       <div>{{item.num}}m</div>
     </div>
+     <div class="paging">
+          <a-pagination  v-model="current" :total="30" show-less-items />
+        </div>
   </div>
 </template>
 
@@ -116,6 +119,7 @@ export default {
       options: bankList,
       valueWDBank: null,
       circleRange: 1,
+       current: 1,
       districtlist: [
         {
           id: "A",

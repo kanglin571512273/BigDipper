@@ -16,15 +16,9 @@
         style="color: #08c"
       >Child Node1 {{ value }}</span>
     </a-tree-select>
-      <a-modal
-          v-model="visible"
-          width="92%"
-          title="杭州爱迷尚服装公司-企业画像"
-          :footer="null"
-          @ok="handleOk"
-        >
-          <Customerportrait></Customerportrait>
-        </a-modal>
+    <a-modal v-model="visible" width="92%" title="杭州爱迷尚服装公司-企业画像" :footer="null" @ok="handleOk">
+      <Customerportrait></Customerportrait>
+    </a-modal>
     <a-select
       label-in-value
       placeholder="请选择机构清单"
@@ -116,7 +110,7 @@
         <div>{{item.num}}m</div>
       </div>
       <div class="paging">
-        <a-pagination v-model="current" :total="50" show-less-items />
+        <a-pagination v-model="current" :total="30" show-less-items />
       </div>
     </div>
     <div v-show="num == 2">
@@ -133,15 +127,7 @@
           :value="item.id"
           @click="changeStatus($event, item.id)"
         >{{item.label}}</div>
-        <!-- <div class="wage" @click="changeStatus($event, 3)">ETC</div>
-        <div class="wage" @click="changeStatus($event, 2)">管户</div>
-        <div class="wage" @click="changeStatus($event, 1)">掌银</div>
-        <div class="wage" @click="changeStatus($event, 4)">对攻扩户</div>-->
       </div>
-      <!-- <div class="wage-box">
-        <div class="wage" @click="changeStatus($event, 5)">管户</div>
-        <div class="wage" @click="changeStatus($event, 6)">贷记卡</div>
-      </div>-->
       <div class="classification">
         客群：
         <a-checkbox @change="onChange">全选</a-checkbox>
@@ -237,8 +223,8 @@
         </div>
         <div>{{item.num}}m</div>
       </div>
-       <div class="paging">
-        <a-pagination v-model="current" :total="50" show-less-items />
+      <div class="paging">
+        <a-pagination v-model="current" :total="30" show-less-items />
       </div>
     </div>
     <div v-show="num == 4">
@@ -280,9 +266,9 @@
           </div>
           <div>{{item.num}}m</div>
         </div>
-         <div class="paging">
-        <a-pagination v-model="current" :total="50" show-less-items />
-      </div>
+        <div class="paging">
+          <a-pagination v-model="current" :total="30" show-less-items />
+        </div>
       </a-radio-group>
     </div>
     <div v-show="num == 5">
@@ -309,9 +295,9 @@
           </div>
           <div>{{item.num}}m</div>
         </div>
-         <div class="paging">
-        <a-pagination v-model="current" :total="50" show-less-items />
-      </div>
+        <div class="paging">
+          <a-pagination v-model="current" :total="30" show-less-items />
+        </div>
       </a-radio-group>
     </div>
   </div>
@@ -349,7 +335,7 @@ Vue.use(Cascader);
 Vue.use(TreeSelect);
 Vue.use(Pagination);
 export default {
-    components: {
+  components: {
     Customerportrait,
   },
   data() {
@@ -383,7 +369,13 @@ export default {
         { id: 24, label: "浙江仕佳网络公司", num: 120 },
         { id: 25, label: "浙江创峰科技有限公司", num: 150 },
         { id: 26, label: "浙江迈磊凯家具公司", num: 190 },
-        { id: 5, label: "杭州朗珮科技有限公司", num: 250 },
+        { id: 85, label: "杭州朗珮科技有限公司", num: 250 },
+        { id: 65, label: "杭州朗珮科技有限公司", num: 250 },
+        { id: 165, label: "杭州朗珮科技有限公司", num: 250 },
+        { id: 265, label: "杭州朗珮科技有限公司", num: 250 },
+        { id: 365, label: "杭州朗珮科技有限公司", num: 250 },
+        { id: 465, label: "杭州朗珮科技有限公司", num: 250 },
+        { id: 565, label: "杭州朗珮科技有限公司", num: 250 },
       ],
       apartment: [
         { id: 1, label: "名称公寓", num: 100 },
@@ -393,6 +385,13 @@ export default {
         { id: 5, label: "延安路", num: 350 },
         { id: 6, label: "平海公寓", num: 450 },
         { id: 7, label: "未央村", num: 650 },
+        { id: 14, label: "中山山路", num: 190 },
+        { id: 776, label: "平海公寓", num: 450 },
+        { id: 77, label: "未央村", num: 650 },
+        { id: 714, label: "中山山路", num: 190 },
+        { id: 25, label: "延安路", num: 350 },
+        { id: 36, label: "平海公寓", num: 450 },
+        { id: 47, label: "未央村", num: 650 },
       ],
       personallist1: [
         { id: 6, label: "VIP", num: 23 },
@@ -421,7 +420,10 @@ export default {
     },
     onBankChange(value, label) {
       // 四个组件都用
-      let bankCircleShow3 = (this.valueWDBank === "hubin" ||this.valueWDBank ===  "yananlu")  ? true : false;
+      let bankCircleShow3 =
+        this.valueWDBank === "hubin" || this.valueWDBank === "yananlu"
+          ? true
+          : false;
       Bus.$emit("circleShow3", bankCircleShow3, this.valueWDBank);
     },
     handleChange(value) {
@@ -453,12 +455,12 @@ export default {
     },
     rangeChange() {
       let radius = null;
-      if(this.circleRange == 1) {
+      if (this.circleRange == 1) {
         radius = 500;
-         Bus.$emit("radiusRange3", radius);
+        Bus.$emit("radiusRange3", radius);
       } else if (this.circleRange == 2) {
         radius = 1500;
-         Bus.$emit("radiusRange3", radius);
+        Bus.$emit("radiusRange3", radius);
       }
     },
     changeStatus(e, number) {
@@ -475,11 +477,11 @@ export default {
     cantt() {
       this.cant = 1;
     },
-     showModal() {
-       console.log(2222)
+    showModal() {
+      console.log(2222);
       this.visible = true;
     },
-      handleOk(e) {
+    handleOk(e) {
       this.visible = false;
     },
   },
@@ -487,6 +489,4 @@ export default {
 </script>
 <style lang="stylus" scoped>
 @import '../assets/css/common.styl';
-
-
 </style>

@@ -283,7 +283,7 @@ const data2 = [
     code: "0",
     time: "4",
     registered: "0",
-    marketing: "““进取增利”理财产品",
+    marketing: "“进取增利”理财产品",
     remarks: "客户不太有意向",
     entrytime: "2008/07/5",
     person: "耿宜若",
