@@ -121,8 +121,8 @@ export default {
           id: "A",
           label: "小微园区",
           icon: require("../assets/icon/wd_xwyq_mid.png"),
-          count1: 4,
-          count2: 6,
+          count1: 2,
+          count2: 4,
         },
         {
           id: "B",

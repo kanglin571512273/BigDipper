@@ -24,7 +24,7 @@
       </a-radio-group>
     </div>
     <div v-if="valueWDBank =='hubin'" class="digital lndependent">网点1个，自助银行1个。</div>
-    <div v-if="valueWDBank =='yananlu'" class="digital lndependent">网点30个，自助银行36个。</div>
+    <div v-if="valueWDBank =='yananlu'" class="digital lndependent">网点33个，自助银行39个。</div>
     <div class="radioGroups">
       <a-checkbox-group @change="onWDChange">
         <div class="radioGroup-lint">
@@ -182,7 +182,7 @@ export default {
       // wdAllTotal: 30,
       // zzyhTotal:38,
       wdList:[
-        {id:1, label:'营业中心', count1: 6, count2: 6, count3: 1, count4: 1},
+        {id:1, label:'营业中心', count1: 9, count2: 9, count3: 1, count4: 1},
         {id:2, label:'商圈型', count1: 7, count2: 5, count3: 0, count4: 0},
         {id:3, label:'社区型', count1: 4, count2: 4, count3: 0, count4: 0},
         {id:4, label:'乡政型', count1: 2, count2: 5, count3: 0, count4: 0},
@@ -190,7 +190,7 @@ export default {
         {id:6, label:'园区型', count1: 6, count2: 9, count3: 0, count4: 0},
       ],
       stList:[
-        {id:"A", label:'房产中介', icon: require("../assets/icon/wd_fczj_mid.png"), count1: 4, count2: 6},
+        {id:"A", label:'房产中介', icon: require("../assets/icon/wd_fczj_mid.png"), count1: 6, count2: 8},
         {id:"B", label:'综合体', icon: require("../assets/icon/wd_zht_mid.png"), count1: 4, count2: 8},
         {id:"C", label:'专业市场', icon: require("../assets/icon/wd_zysc_mid.png"), count1: 2, count2: 9},
         {id:"D", label:'创意园', icon: require("../assets/icon/wd_cyy_mid.png"), count1: 0, count2: 15},

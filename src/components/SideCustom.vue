@@ -170,7 +170,7 @@ export default {
     },
     onBankChange(value, label) { // 四个组件都用
       let bankCircleShow2 = (this.valueWDBank === "yananlu" || this.valueWDBank === "hubin") ? true : false;
-      console.log( bankCircleShow2, this.valueWDBank)
+      // console.log( bankCircleShow2, this.valueWDBank)
       Bus.$emit("circleShow2", bankCircleShow2, this.valueWDBank);
     },
     rangeChange() {
