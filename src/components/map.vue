@@ -169,7 +169,7 @@ export default {
       bussinessCenterShow: false,
       stShow: false,
       bankWDShow: false,
-      bankName: '',
+      bankName: "",
       bankCircleShow2: false,
       bankCircleShow3: false,
       bankCircleShow4: false,
@@ -177,11 +177,11 @@ export default {
       sqCYYShow: false,
       show: false,
       zIndex: 99000000,
-      
-      circleCenter1:null, // 四个组件的中心点坐标
-      circleCenter2:null,
-      circleCenter3:null,
-      circleCenter4:null,
+
+      circleCenter1: null, // 四个组件的中心点坐标
+      circleCenter2: null,
+      circleCenter3: null,
+      circleCenter4: null,
       radius1: 500,
       radius2: 500,
       radius3: 500,
@@ -190,17 +190,20 @@ export default {
       houseCenter: null,
       bankList: null,
       cyyList: null,
-      
-      circlePath1: { // 延安路支行
+
+      circlePath1: {
+        // 延安路支行
         lng: 120.169724,
-        lat: 30.273274
+        lat: 30.273274,
       },
-      circlePath2: { // 杭州延庆支行
+      circlePath2: {
+        // 杭州延庆支行
         lng: 120.173198,
         lat: 30.257352,
       },
-      
-      businessCenter1: [// 延安路支行营业中心
+
+      businessCenter1: [
+        // 延安路支行营业中心
         { lng: 120.173198, lat: 30.257352 },
         { lng: 120.180754, lat: 30.270381 },
         { lng: 120.176371, lat: 30.263984 },
@@ -211,44 +214,51 @@ export default {
         { lng: 120.177573, lat: 30.266986 },
         { lng: 120.175199, lat: 30.255354 },
       ],
-      businessCenter2: [ // 杭州延庆支行营业中心
-        { lng: 120.173198,lat: 30.257352 },
+      businessCenter2: [
+        // 杭州延庆支行营业中心
+        { lng: 120.173198, lat: 30.257352 },
       ],
-      houseCenter1: [// 延安路支行房产中介
-        { lng: 120.169602, lat: 30.273619 },
-        { lng: 120.169278, lat: 30.274632 },
-        { lng: 120.170806, lat: 30.273322 },
-        { lng: 120.170662, lat: 30.272543 },
-        { lng: 120.169656, lat: 30.272465 },
+      houseCenter1: [
+        // 延安路支行房产中介
+        { lng: 120.169665, lat: 30.270305 },
+        { lng: 120.169499, lat: 30.276991 },
+        { lng: 120.172059, lat: 30.275548 },
+        { lng: 120.168215, lat: 30.274995 },
+        { lng: 120.171664, lat: 30.273817 },
         { lng: 120.167446, lat: 30.27209 },
         { lng: 120.169404, lat: 30.271529 },
-        { lng: 120.168865, lat: 30.273073 },
+        { lng: 120.172437, lat: 30.271143 },
       ],
-      houseCenter2: [// 杭州延庆支行房产中介
-        { lng: 120.174995, lat: 30.260004 },
-        { lng: 120.177079, lat: 30.254139 },
+      houseCenter2: [
+        // 杭州延庆支行房产中介
+        { lng: 120.169634, lat: 30.256743 },
+        { lng: 120.172356, lat: 30.26051 },
         { lng: 120.175821, lat: 30.257212 },
-        { lng: 120.173557, lat: 30.257212 },
-        { lng: 120.174204, lat: 30.259676 },
-        { lng: 120.174815, lat: 30.257313 },
+        { lng: 120.175356, lat: 30.259044 },
+        { lng: 120.174566, lat: 30.255893 },
+        { lng: 120.172661, lat: 30.253179 },
       ],
-      bankList1: [// 延安路支行银行网点
-        { lng: 120.170626, lat: 30.272246 },
-        { lng: 120.168704, lat: 30.272621 },
-        { lng: 120.16971, lat: 30.273915 },
+      bankList1: [
+        // 延安路支行银行网点
+        { lng: 120.165439, lat: 30.272312 },
+        { lng: 120.166517, lat: 30.273919 },
+        { lng: 120.170362, lat: 30.27218 },
         { lng: 120.168236, lat: 30.273525 },
       ],
-      bankList2: [// 杭州延庆支行银行网点
-        { lng: 120.174815, lat: 30.25736 },
-        { lng: 120.171665, lat: 30.258436 },
+      bankList2: [
+        // 杭州延庆支行银行网点
+        { lng: 120.171062, lat: 30.255874 },
+        { lng: 120.170299, lat: 30.259196 },
       ],
-      cyyList1: [// 延安路支行创意园
+      cyyList1: [
+        // 延安路支行创意园
         { lng: 120.168236, lat: 30.273525 },
         { lng: 120.169404, lat: 30.271529 },
         { lng: 120.170806, lat: 30.273322 },
         { lng: 120.169978, lat: 30.274632 },
       ],
-      cyyList2: [// 杭州延庆支行创意园
+      cyyList2: [
+        // 杭州延庆支行创意园
         { lng: 120.174187, lat: 30.259574 },
         { lng: 120.171187, lat: 30.260502 },
       ],
@@ -310,18 +320,18 @@ export default {
     });
     Bus.$on("circleShow1", (show, value) => {
       this.bankCircleShow1 = show;
-      if(value == "hubin") {
+      if (value == "hubin") {
         this.circleCenter1 = this.circlePath2;
         this.businessCenter = this.businessCenter2;
         this.houseCenter = this.houseCenter2;
         this.bankList = this.bankList2;
-        this.bankName = '杭州延庆支行'
-      } else if(value == "yananlu") {
+        this.bankName = "杭州延庆支行";
+      } else if (value == "yananlu") {
         this.circleCenter1 = this.circlePath1;
         this.businessCenter = this.businessCenter1;
         this.houseCenter = this.houseCenter1;
         this.bankList = this.bankList1;
-        this.bankName = '延安路支行'
+        this.bankName = "延安路支行";
       }
     });
     Bus.$on("radiusRange1", (radius) => {
@@ -340,12 +350,12 @@ export default {
     });
     Bus.$on("circleShow2", (show, value) => {
       this.bankCircleShow2 = show;
-      this.bankName = '杭州延庆支行'
-      if(value == "hubin") {
+      this.bankName = "杭州延庆支行";
+      if (value == "hubin") {
         this.circleCenter2 = this.circlePath2;
-      } else if(value == "yananlu") {
+      } else if (value == "yananlu") {
         this.circleCenter2 = this.circlePath1;
-        this.bankName = '延安路支行'
+        this.bankName = "延安路支行";
       }
     });
     Bus.$on("radiusRange2", (radius) => {
@@ -354,12 +364,12 @@ export default {
 
     Bus.$on("circleShow3", (show, value) => {
       this.bankCircleShow3 = show;
-      if(value == "hubin") {
+      if (value == "hubin") {
         this.circleCenter3 = this.circlePath2;
-        this.bankName = '杭州延庆支行'
-      } else if(value == "yananlu") {
+        this.bankName = "杭州延庆支行";
+      } else if (value == "yananlu") {
         this.circleCenter3 = this.circlePath1;
-        this.bankName = '延安路支行'
+        this.bankName = "延安路支行";
       }
     });
     Bus.$on("disRadio", (value) => {
@@ -371,14 +381,14 @@ export default {
 
     Bus.$on("circleShow4", (show, value) => {
       this.bankCircleShow4 = show;
-      if(value == "hubin") {
+      if (value == "hubin") {
         this.circleCenter4 = this.circlePath2;
         this.cyyList = this.cyyList2;
-        this.bankName = '杭州延庆支行'
-      } else if(value == "yananlu") {
+        this.bankName = "杭州延庆支行";
+      } else if (value == "yananlu") {
         this.circleCenter4 = this.circlePath1;
         this.cyyList = this.cyyList1;
-        this.bankName = '延安路支行'
+        this.bankName = "延安路支行";
       }
     });
     Bus.$on("checkSQFL", (value) => {
@@ -397,8 +407,8 @@ export default {
       // console.log("marker");
     },
     // updateCirclePath(e) {
-      // this.circlePath.center = e.target.getCenter();
-      // this.circlePath.radius = e.target.getRadius();
+    // this.circlePath.center = e.target.getCenter();
+    // this.circlePath.radius = e.target.getRadius();
     // },
     infoWindowClose() {
       this.show = false;
