@@ -228,9 +228,9 @@ export default {
       this.visibles = false;
     },
     onBankChange(value, label) {
-      console.log(this.valueWDBank)
+      // console.log(this.valueWDBank)
       this.bankCircleShow1 = (this.valueWDBank === "hubin" ||this.valueWDBank ===  "yananlu") ? true : false;
-      console.log(this.bankCircleShow1, this.valueWDBank)
+      // console.log(this.bankCircleShow1, this.valueWDBank)
       Bus.$emit("circleShow1", this.bankCircleShow1, this.valueWDBank);
     },
     onWDChange(checkValues) {

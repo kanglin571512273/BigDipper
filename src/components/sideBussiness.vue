@@ -6,6 +6,7 @@
       :tree-data="options"
       placeholder="请选择机构名称"
       allowClear
+      v-model="valueWDBank"
       @change="onBankChange"
     >
       <span
@@ -39,10 +40,10 @@
       </a-checkbox-group>
     </div>
     <div class="classification">距离：</div>
-    <a-radio-group name="radioGroup" :default-value="2">
+    <a-radio-group name="radioGroup" v-model="circleRange" @change="rangeChange">
       <div class="radioGroup-lint">
-        <a-radio :value="2">1公里</a-radio>
-        <a-radio :value="1">3公里</a-radio>
+        <a-radio :value="1">1公里</a-radio>
+        <a-radio :value="2">3公里</a-radio>
         <a-radio :value="3">
           <input class="inputs" maxlength="2" placeholder="99" />公里
         </a-radio>
@@ -113,6 +114,8 @@ export default {
   data() {
     return {
       options: bankList,
+      valueWDBank: null,
+      circleRange: 1,
       districtlist: [
         {
           id: "A",
@@ -171,12 +174,22 @@ export default {
     },
     onBankChange(value, label) {
       // 四个组件都用
-      let bankCircleShow4 = value === "hubin" ? true : false;
-      Bus.$emit("circleShow4", bankCircleShow4, this.curKey);
+      let bankCircleShow4 = (this.valueWDBank === "hubin" ||this.valueWDBank ===  "yananlu") ? true : false;
+      Bus.$emit("circleShow4", bankCircleShow4, this.valueWDBank);
     },
     onSQFLChange(checkValues) {
       // console.log(checkValues)
       Bus.$emit("checkSQFL", checkValues);
+    },
+    rangeChange() {
+      let radius = null;
+      if(this.circleRange == 1) {
+        radius = 500;
+         Bus.$emit("radiusRange4", radius);
+      } else if (this.circleRange == 2) {
+        radius = 1500;
+         Bus.$emit("radiusRange4", radius);
+      }
     },
     changeStatus(e, number) {
       if (e.target.className.indexOf("wages") == -1) {

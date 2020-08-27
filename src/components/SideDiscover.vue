@@ -6,6 +6,7 @@
       :tree-data="options"
       placeholder="请选择机构名称"
       allowClear
+      v-model="valueWDBank"
       @change="onBankChange"
     >
       <span
@@ -66,10 +67,10 @@
         >{{item.label}} {{item.num}}</div>
       </div>
       <div class="classification">距离：</div>
-      <a-radio-group name="radioGroup" :default-value="2">
+      <a-radio-group name="radioGroup" v-model="circleRange" @change="rangeChange">
         <div class="radioGroup-lint">
-          <a-radio :value="2">1公里</a-radio>
-          <a-radio :value="1">3公里</a-radio>
+          <a-radio :value="1">1公里</a-radio>
+          <a-radio :value="2">3公里</a-radio>
           <a-radio :value="3">
             <input class="inputs" maxlength="2" placeholder="99" />公里
           </a-radio>
@@ -156,10 +157,10 @@
       </div>
 
       <div class="classification">距离：</div>
-      <a-radio-group name="radioGroup" :default-value="2">
+      <a-radio-group name="radioGroup" v-model="circleRange" @change="rangeChange">
         <div class="radioGroup-lint">
-          <a-radio :value="2">1公里</a-radio>
-          <a-radio :value="1">3公里</a-radio>
+          <a-radio :value="1">1公里</a-radio>
+          <a-radio :value="2">3公里</a-radio>
           <a-radio :value="3">
             <input class="inputs" maxlength="2" placeholder="99" />公里
           </a-radio>
@@ -187,10 +188,10 @@
     <div v-show="num == 3">
       <a-input placeholder="请输入客户名称" style="width: 300px;" />
       <div class="classification">距离：</div>
-      <a-radio-group name="radioGroup" :default-value="2">
+      <a-radio-group name="radioGroup" v-model="circleRange" @change="rangeChange">
         <div class="radioGroup-lint">
-          <a-radio :value="2">1公里</a-radio>
-          <a-radio :value="4">3公里</a-radio>
+          <a-radio :value="1">1公里</a-radio>
+          <a-radio :value="2">3公里</a-radio>
           <a-radio :value="3">
             <input class="inputs" maxlength="2" placeholder="99" />公里
           </a-radio>
@@ -261,10 +262,10 @@
         >{{item.label}}</div>
       </div>
       <div class="classification">距离：</div>
-      <a-radio-group name="radioGroup" :default-value="2">
+      <a-radio-group name="radioGroup" v-model="circleRange" @change="rangeChange">
         <div class="radioGroup-lint">
-          <a-radio :value="2">1公里</a-radio>
-          <a-radio :value="1">3公里</a-radio>
+          <a-radio :value="1">1公里</a-radio>
+          <a-radio :value="2">3公里</a-radio>
           <a-radio :value="3">
             <input class="inputs" maxlength="2" placeholder="99" />公里
           </a-radio>
@@ -287,10 +288,10 @@
     <div v-show="num == 5">
       <a-input placeholder="请输入客户名称" style="width: 300px;" />
       <div class="classification">距离：</div>
-      <a-radio-group name="radioGroup" :default-value="2">
+      <a-radio-group name="radioGroup" v-model="circleRange" @change="rangeChange">
         <div class="radioGroup-lint">
-          <a-radio :value="2">1公里</a-radio>
-          <a-radio :value="1">3公里</a-radio>
+          <a-radio :value="1">1公里</a-radio>
+          <a-radio :value="2">3公里</a-radio>
           <a-radio :value="3">
             <input class="inputs" maxlength="2" placeholder="99" />公里
           </a-radio>
@@ -359,6 +360,8 @@ export default {
       disRadioShow3: false,
       visible: false,
       options: bankList,
+      valueWDBank: null,
+      circleRange: 1,
       personlist: [
         { id: 1, label: "代发工资" },
         { id: 2, label: "高管开户" },
@@ -418,8 +421,8 @@ export default {
     },
     onBankChange(value, label) {
       // 四个组件都用
-      let bankCircleShow3 = value === "hubin" ? true : false;
-      Bus.$emit("circleShow3", bankCircleShow3, this.curKey);
+      let bankCircleShow3 = (this.valueWDBank === "hubin" ||this.valueWDBank ===  "yananlu")  ? true : false;
+      Bus.$emit("circleShow3", bankCircleShow3, this.valueWDBank);
     },
     handleChange(value) {
       console.log(value); // { key: "lucy", label: "Lucy (101)" }
@@ -446,6 +449,16 @@ export default {
         case "houses":
           this.num = 5;
         default:
+      }
+    },
+    rangeChange() {
+      let radius = null;
+      if(this.circleRange == 1) {
+        radius = 500;
+         Bus.$emit("radiusRange3", radius);
+      } else if (this.circleRange == 2) {
+        radius = 1500;
+         Bus.$emit("radiusRange3", radius);
       }
     },
     changeStatus(e, number) {

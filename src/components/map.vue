@@ -93,7 +93,7 @@
       <div v-if="curTabKey== 3">
         <bm-marker
           v-if="bankCircleShow3"
-          :position="circlePath.center"
+          :position="circleCenter3"
           title="湖滨支行"
           @click="infoWindowOpen"
         >
@@ -103,8 +103,8 @@
         </bm-marker>
         <bm-circle
           v-if="bankCircleShow3 && disRadioShow3"
-          :center="circlePath.center"
-          :radius="circlePath.radius"
+          :center="circleCenter3"
+          :radius="radius3"
           fillColor="#1890FF"
           stroke-color="#FFF"
           strokeStyle="dashed"
@@ -117,7 +117,7 @@
       <div v-if="curTabKey== 4">
         <bm-marker
           v-if="bankCircleShow4"
-          :position="circlePath.center"
+          :position="circleCenter4"
           title="湖滨支行"
           @click="infoWindowOpen"
         >
@@ -127,8 +127,8 @@
         </bm-marker>
         <bm-circle
           v-if="bankCircleShow4"
-          :center="circlePath.center"
-          :radius="circlePath.radius"
+          :center="circleCenter4"
+          :radius="radius4"
           fillColor="#1890FF"
           stroke-color="#FFF"
           strokeStyle="dashed"
@@ -187,7 +187,7 @@ export default {
       businessCenter: null,
       houseCenter: null,
       bankList: null,
-
+      cyyList: null,
       
       circlePath1: { // 延安路支行
         lng: 120.169689,
@@ -234,7 +234,11 @@ export default {
         { lng: 120.170612, lat: 30.260833 },
         { lng: 120.172175, lat: 30.263769 },
       ],
-      cyyList: [
+      cyyList1: [// 延安路支行创意园
+        { lng: 120.174187, lat: 30.259574 },
+        { lng: 120.171187, lat: 30.260502 },
+      ],
+      cyyList2: [// 杭州延庆支行创意园
         { lng: 120.174187, lat: 30.259574 },
         { lng: 120.171187, lat: 30.260502 },
       ],
@@ -332,18 +336,37 @@ export default {
     Bus.$on("radiusRange2", (radius) => {
       this.radius2 = radius;
     });
-    Bus.$on("circleShow3", (value) => {
-      this.bankCircleShow3 = value;
-    });
-    Bus.$on("circleShow4", (value) => {
-      this.bankCircleShow4 = value;
+
+    Bus.$on("circleShow3", (show, value) => {
+      this.bankCircleShow3 = show;
+      if(value == "hubin") {
+        this.circleCenter3 = this.circlePath2;
+      } else if(value == "yananlu") {
+        this.circleCenter3 = this.circlePath1;
+      }
     });
     Bus.$on("disRadio", (value) => {
       this.disRadioShow3 = value;
     });
+    Bus.$on("radiusRange3", (radius) => {
+      this.radius3 = radius;
+    });
+
+    Bus.$on("circleShow4", (show, value) => {
+      this.bankCircleShow4 = show;
+      if(value == "hubin") {
+        this.circleCenter4 = this.circlePath2;
+        this.cyyList = this.cyyList2;
+      } else if(value == "yananlu") {
+        this.circleCenter4 = this.circlePath1;
+        this.cyyList = this.cyyList1;
+      }
+    });
     Bus.$on("checkSQFL", (value) => {
-      let checkList = value;
-      this.sqCYYShow = value.includes("E") ? true : false;
+      this.sqCYYShow = value.includes("A") ? true : false;
+    });
+    Bus.$on("radiusRange4", (radius) => {
+      this.radius4 = radius;
     });
   },
   methods: {
