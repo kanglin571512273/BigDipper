@@ -74,6 +74,7 @@
           <th></th>
           <th>总客类别</th>
           <th>户数</th>
+          <th></th>
         </tr>
         <tr v-for="(item, index) in cusCountList" :key="index">
           <td></td>
