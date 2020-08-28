@@ -256,20 +256,20 @@
             <input class="inputs" maxlength="2" placeholder="99" />公里
           </a-radio>
         </div>
-        <div class="classification">名称：</div>
-        <div class="agriculture-box" v-for="item in companylist" :key="item.id" :value="item.id">
-          <div>
-            <svg class="icon" aria-hidden="true">
-              <use xlink:href="#iconyikaihu-huang" />
-            </svg>
-            <a @click="showModal">{{item.label}}</a>
-          </div>
-          <div>{{item.num}}m</div>
-        </div>
-        <div class="paging">
-          <a-pagination v-model="current" :total="30" show-less-items />
-        </div>
       </a-radio-group>
+      <div class="classification">名称：</div>
+      <div class="agriculture-box" v-for="item in companylist" :key="item.id" :value="item.id">
+        <div>
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#iconyikaihu-huang" />
+          </svg>
+          <a @click="showModal">{{item.label}}</a>
+        </div>
+        <div>{{item.num}}m</div>
+      </div>
+      <div class="paging">
+        <a-pagination v-model="current" :total="30" show-less-items />
+      </div>
     </div>
     <div v-show="num == 5">
       <a-input placeholder="请输入客户名称" style="width: 300px;" />
@@ -282,23 +282,23 @@
             <input class="inputs" maxlength="2" placeholder="99" />公里
           </a-radio>
         </div>
-        <div class="classification">
-          范围内客户清单：
-          <div>109户</div>
-        </div>
-        <div class="agriculture-box" v-for="item in apartment" :key="item.id" :value="item.id">
-          <div>
-            <svg class="icon" aria-hidden="true">
-              <use xlink:href="#iconyikaihu-huang" />
-            </svg>
-            <span>{{item.label}}</span>
-          </div>
-          <div>{{item.num}}m</div>
-        </div>
-        <div class="paging">
-          <a-pagination v-model="current" :total="30" show-less-items />
-        </div>
       </a-radio-group>
+      <div class="classification">
+        范围内客户清单：
+        <div>109户</div>
+      </div>
+      <div class="agriculture-box" v-for="item in apartment" :key="item.id" :value="item.id">
+        <div>
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#iconyikaihu-huang" />
+          </svg>
+          <span>{{item.label}}</span>
+        </div>
+        <div>{{item.num}}m</div>
+      </div>
+      <div class="paging">
+        <a-pagination v-model="current" :total="30" show-less-items />
+      </div>
     </div>
   </div>
 </template>

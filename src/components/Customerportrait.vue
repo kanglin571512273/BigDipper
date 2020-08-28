@@ -21,7 +21,7 @@
           </tr>
           <tr>
             <th>营业收入</th>
-            <td>100000万</td>
+            <td>1500万</td>
           </tr>
           <tr>
             <th>上级机构</th>
@@ -47,7 +47,7 @@
         <table class="gridtablse">
           <tr>
             <th>注册资金</th>
-            <td>1800000万元人名币</td>
+            <td>1000万元人名币</td>
           </tr>
           <tr>
             <th>控股股东名称</th>
@@ -73,7 +73,7 @@
         <table class="gridtablse">
           <tr>
             <th>资产总额</th>
-            <td>200000万</td>
+            <td>20000万</td>
           </tr>
           <tr>
             <th>成立日期</th>

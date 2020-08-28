@@ -29,6 +29,17 @@
                 <a-table :columns="columns5" :data-source="data5" :pagination="false"></a-table>
               </div>
             </a-modal>
+            <a-modal
+              v-model="visible2"
+              width="92%"
+              title="杭州爱迷尚服装公司-客户画像"
+              :footer="null"
+              @ok="handleOk2"
+            >
+              <div class="Summary-table">
+               <Customerportrait></Customerportrait>
+              </div>
+            </a-modal>
             <div class="Summary">
               <div>汇总类型：</div>
               <a-select
@@ -43,13 +54,14 @@
             </div>
             <div class="Summary-table" v-show="key==11">
               <a-table :columns="columns" :data-source="data" :pagination="false">
+              <a slot="code" @click="showModal2" slot-scope="text">{{ text }}</a>
                 <a slot="action" @click="showModal">查看</a>
-                <p slot-scope="record" style="margin: 0">{{ record.description }}</p>
               </a-table>
             </div>
             <div class="Summary-table" v-show="key==12">
               <a-table :columns="columns12" :data-source="data" :pagination="false">
-                <a slot="action">查看</a>
+              <a slot="code"  @click="showModal2" slot-scope="text">{{ text }}</a>
+                <a slot="action" @click="showModal">查看</a>
                 <p slot-scope="record" style="margin: 0">{{ record.description }}</p>
               </a-table>
             </div>
@@ -104,7 +116,7 @@ import { Tooltip } from "ant-design-vue";
 Vue.use(Tooltip);
 const columns = [
   { title: "交易方", dataIndex: "name", key: "name", width: 240 },
-  { title: "本行客户", dataIndex: "code", key: "code", width: 240 },
+  { title: "本行客户", dataIndex: "code", key: "code",scopedSlots: { customRender: 'code' }, width: 240 },
   { title: "总笔数", dataIndex: "time", key: "time" },
   { title: "总金额（万元）", dataIndex: "registered", key: "registered" },
   {
@@ -116,7 +128,7 @@ const columns = [
 ];
 const columns12 = [
   { title: "交易方", dataIndex: "name", key: "name", width: 240 },
-  { title: "非本行客户", dataIndex: "code", key: "code", width: 240 },
+  { title: "非本行客户", dataIndex: "code",scopedSlots: { customRender: 'code' }, width: 240 },
   { title: "总笔数", dataIndex: "time", key: "time" },
   { title: "总金额（万元）", dataIndex: "registered", key: "registered" },
   {
@@ -435,6 +447,7 @@ export default {
       data5,
       columns5,
       visible: false,
+      visible2: false,
     };
   },
   mounted() {
@@ -444,9 +457,14 @@ export default {
     showModal() {
       this.visible = true;
     },
+    showModal2() {
+      this.visible2 = true;
+    },
     handleOk(e) {
-      console.log(e);
       this.visible = false;
+    },
+    handleOk2(e) {
+      this.visible2 = false;
     },
     handleChange(value) {
       switch (value.key) {

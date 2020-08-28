@@ -133,11 +133,7 @@ const data1 = [
 import Vue from "vue";
 import { Input } from "ant-design-vue";
 Vue.use(Input);
-export default {
-
-
-  
-};
+export default {};
 </script>
 
 <style lang="stylus" scoped>
@@ -156,10 +152,12 @@ export default {
   border-radius: 10px;
   justify-content: space-between;
   margin-bottom: 30px;
+  padding: 10px;
 }
 
 .before {
   width: 42%;
+  padding-left: 10px;
 
   div {
     margin-top: 5px;

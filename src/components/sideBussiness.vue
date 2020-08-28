@@ -162,7 +162,11 @@ export default {
         { id: 2, label: "浙江仕佳网络公司", num: 120 },
         { id: 3, label: "浙江创峰科技有限公司", num: 150 },
         { id: 4, label: "浙江迈磊凯家具公司", num: 190 },
-        { id: 5, label: "杭州朗珮科技有限公司", num: 250 },
+        { id: 5, label: "杭州朗珮科技有限公司", num: 253 },
+        { id: 6, label: "浙江迈磊凯家具公司", num: 367 },
+        { id: 7, label: "杭州朗珮科技有限公司", num: 379 },
+        { id: 8, label: "浙江迈磊凯家具公司", num: 467 },
+        { id: 9, label: "杭州朗珮科技有限公司", num: 580 },
       ],
       provinceData: ["杭州大厦", "元茂大厦", "西溪金座", "IT公园"],
       personlist: [

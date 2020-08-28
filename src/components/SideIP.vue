@@ -1,7 +1,7 @@
 <template>
   <div>
     <a-tree-select
-      style="width: 300px;margin-bottom:10px"
+      style="width: 305px;margin-bottom:10px"
       :dropdown-style="{ maxHeight: '400px', overflow: 'auto' }"
       :tree-data="options"
       v-model="valueWDBank"
